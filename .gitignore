@@ -1,0 +1,32 @@
+﻿# Node
+node_modules/
+package-lock.json
+
+# Backend
+backend/node_modules/
+backend/.env
+
+# Android
+android/
+*.apk
+*.keystore
+
+# Capacitor
+www/
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Logs
+*.log
+npm-debug.log*
+
+# IDE
+.vscode/
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db

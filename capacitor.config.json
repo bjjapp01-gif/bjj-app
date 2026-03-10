@@ -1,0 +1,32 @@
+{
+	"appId": "com.bjjclub.platform",
+	"appName": "BJJ Club Platform",
+	"webDir": "www",
+  "server": {
+    "url": "http://192.168.1.34:5000",
+    "cleartext": true,
+    "androidScheme": "http",
+    "hostname": "192.168.1.34"
+  },
+  "android": {
+    "allowMixedContent": true,
+    "webContentsDebuggingEnabled": true,
+    "overrideUserAgent": "Mozilla/5.0",
+    "appendUserAgent": " BJJApp/1.0"
+  },
+	"plugins": {
+		"SplashScreen": {
+			"launchShowDuration": 3000,
+			"launchAutoHide": true,
+			"backgroundColor": "#2c3e50",
+			"androidSplashResourceName": "splash",
+			"androidScaleType": "CENTER_CROP",
+			"showSpinner": true,
+			"androidSpinnerStyle": "large",
+			"iosSpinnerStyle": "small",
+			"spinnerColor": "#3498db",
+			"splashFullScreen": true,
+			"splashImmersive": true
+		}
+	}
+}
