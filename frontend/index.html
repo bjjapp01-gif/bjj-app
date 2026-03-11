@@ -9560,8 +9560,8 @@ const BJJ_TECHNIQUES_DATABASE = [
 ];
 
         // Agrega esta función al principio de tu archivo JavaScript
-function jwt_decode(token) {
-    try {
+        function jwt_decode(token) {
+        try {
         const base64Url = token.split('.')[1];
         const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
         const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
@@ -9582,24 +9582,44 @@ function jwt_decode(token) {
         // Detectar si estamos en Android/iOS
         const isNativeApp = window.Capacitor || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
         
-        if (isNativeApp) {
-            // En app nativa, usa la IP de tu PC
-            this.baseUrl = 'http://192.168.1.34:5000/api';  // TU IP
+        // Detectar si estamos en producción
+        const isProduction = window.location.hostname !== 'localhost' && 
+                            window.location.hostname !== '192.168.1.34';
+        
+        if (isProduction) {
+            // En Render
+            this.baseUrl = 'https://bjj-app-backend.onrender.com/api'; // 👈 TU URL DE RENDER
         } else {
-            // En navegador web
-            this.baseUrl = 'http://localhost:5000/api';
+            // En desarrollo local
+            const isNativeApp = window.Capacitor || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+            
+            if (isNativeApp) {
+                this.baseUrl = 'http://192.168.1.34:5000/api'; // TU IP local
+            } else {
+                this.baseUrl = 'http://localhost:5000/api';
+            }
         }
         
         console.log('🎯 URL Base:', this.baseUrl);
         this.isRefreshing = false;
         this.refreshSubscribers = [];
     }
-
-
-    // Elimina completamente getApiBaseUrl() o déjalo así:
+    
     getApiBaseUrl() {
-        return 'http://192.168.1.34:5000/api'; // SIEMPRE esta IP
+    // Detectar si estamos en producción
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '192.168.1.34') {
+        return 'https://bjj-app-backend.onrender.com/api'; // 👈 TU URL DE RENDER
     }
+    
+    // En desarrollo local
+    const isNativeApp = window.Capacitor || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    
+    if (isNativeApp) {
+        return 'http://192.168.1.34:5000/api'; // TU IP
+    }
+    
+    return 'http://localhost:5000/api';
+}
 
         setToken(token) {
         this.token = token;
