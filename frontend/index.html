@@ -7240,6 +7240,743 @@ button[onclick*="closeSessionDetail"]:hover {
     justify-content: space-between !important;
     flex: 1 !important;
 }
+
+/* ==================== OPTIMIZACIÓN RESPONSIVE PARA MÓVILES ==================== */
+
+/* Reducciones generales para móvil */
+@media (max-width: 768px) {
+    /* ===== TIPOGRAFÍA REDUCIDA ===== */
+    body {
+        font-size: 14px !important;
+        line-height: 1.4 !important;
+    }
+    
+    h1 { font-size: 1.5rem !important; }
+    h2 { font-size: 1.3rem !important; }
+    h3 { font-size: 1.2rem !important; }
+    h4 { font-size: 1.1rem !important; }
+    
+    /* ===== HEADER COMPACTO ===== */
+    .header {
+        padding: 12px 15px !important;
+        margin-bottom: 15px !important;
+        min-height: 60px;
+    }
+    
+    .header h2 {
+        font-size: 1.2rem !important;
+        gap: 8px !important;
+    }
+    
+    .header h2 i {
+        font-size: 1.1rem !important;
+    }
+    
+    .header-actions {
+        gap: 8px !important;
+    }
+    
+    /* ===== DASHBOARD COMPACTO ===== */
+    .dashboard {
+        gap: 12px !important;
+    }
+    
+    .card {
+        padding: 12px 15px !important;
+        margin-bottom: 12px !important;
+        border-radius: 10px !important;
+    }
+    
+    .card-header {
+        padding-bottom: 10px !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .card-title {
+        font-size: 1rem !important;
+        gap: 6px !important;
+    }
+    
+    .card-title i {
+        font-size: 1rem !important;
+    }
+    
+    /* ===== STATS ITEMS COMPACTOS ===== */
+    .stat-item {
+        padding: 10px 12px !important;
+        margin-bottom: 8px !important;
+        border-radius: 8px !important;
+    }
+    
+    .stat-icon {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 0.9rem !important;
+        margin-right: 10px !important;
+    }
+    
+    .stat-text h4 {
+        font-size: 0.9rem !important;
+        margin-bottom: 2px !important;
+    }
+    
+    .stat-text p {
+        font-size: 0.8rem !important;
+    }
+    
+    .stat-value {
+        font-size: 1.1rem !important;
+        min-width: 50px !important;
+    }
+    
+    .stat-value .subtext {
+        font-size: 0.7rem !important;
+    }
+    
+    /* ===== BOTONES COMPACTOS ===== */
+    .btn {
+        padding: 10px 15px !important;
+        font-size: 0.9rem !important;
+        min-height: 40px !important;
+        border-radius: 6px !important;
+    }
+    
+    .btn i {
+        font-size: 0.9rem !important;
+    }
+    
+    .btn-action {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    /* ===== FORMULARIOS COMPACTOS ===== */
+    .form-group {
+        margin-bottom: 12px !important;
+    }
+    
+    .form-group label {
+        font-size: 0.9rem !important;
+        margin-bottom: 4px !important;
+    }
+    
+    input, select, textarea {
+        padding: 10px 12px !important;
+        font-size: 14px !important;
+        min-height: 40px !important;
+        border-radius: 6px !important;
+    }
+    
+    textarea {
+        min-height: 80px !important;
+    }
+    
+    /* ===== MODALES COMPACTOS ===== */
+    .modal-content {
+        width: 95% !important;
+        margin: 10px auto !important;
+        border-radius: 12px !important;
+    }
+    
+    .modal-header {
+        padding: 15px 20px !important;
+    }
+    
+    .modal-header h3 {
+        font-size: 1.2rem !important;
+        gap: 8px !important;
+    }
+    
+    .modal-body {
+        padding: 20px !important;
+    }
+    
+    .modal-close {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 1.3rem !important;
+    }
+    
+    /* ===== SIDEBAR MÁS COMPACTA ===== */
+    .sidebar {
+        width: 85% !important;
+        max-width: 280px !important;
+    }
+    
+    .nav-item {
+        padding: 12px 15px !important;
+        min-height: 44px !important;
+    }
+    
+    .nav-item i {
+        font-size: 1rem !important;
+        width: 20px !important;
+    }
+    
+    .nav-text {
+        font-size: 0.9rem !important;
+    }
+    
+    .user-profile {
+        padding: 12px 15px !important;
+        margin: 0 10px 15px !important;
+    }
+    
+    .user-avatar {
+        width: 40px !important;
+        height: 40px !important;
+        font-size: 1rem !important;
+    }
+    
+    .user-info h3 {
+        font-size: 0.9rem !important;
+    }
+    
+    .user-info p {
+        font-size: 0.8rem !important;
+    }
+    
+    /* ===== SESIONES COMPACTO ===== */
+    .session-item {
+        padding: 15px !important;
+        margin-bottom: 12px !important;
+    }
+    
+    .session-header {
+        margin-bottom: 10px !important;
+    }
+    
+    .session-date {
+        font-size: 0.9rem !important;
+    }
+    
+    .session-techniques {
+        font-size: 0.9rem !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .session-notes {
+        padding: 10px !important;
+        font-size: 0.85rem !important;
+    }
+    
+    /* ===== TIMELINE COMPACTO ===== */
+    .timeline-item {
+        padding: 12px 15px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .timeline-item::before {
+        width: 10px !important;
+        height: 10px !important;
+        left: -22px !important;
+        top: 20px !important;
+    }
+    
+    .timeline-date {
+        font-size: 0.85rem !important;
+    }
+    
+    .timeline-content {
+        font-size: 0.9rem !important;
+    }
+    
+    /* ===== GAME PLANS COMPACTO ===== */
+    .gameplan-card {
+        padding: 15px !important;
+    }
+    
+    .gameplan-card-header h3 {
+        font-size: 1rem !important;
+    }
+    
+    .badge {
+        font-size: 0.7rem !important;
+        padding: 4px 8px !important;
+    }
+    
+    .gameplan-stats {
+        font-size: 0.8rem !important;
+        gap: 10px !important;
+        margin: 8px 0 !important;
+    }
+    
+    .gameplan-description {
+        font-size: 0.85rem !important;
+        padding: 10px !important;
+    }
+    
+    .gameplan-meta {
+        font-size: 0.75rem !important;
+    }
+    
+    /* ===== BIBLIOTECA COMPACTA ===== */
+    .library-header {
+        padding: 15px !important;
+    }
+    
+    .technique-card {
+        padding: 0 !important;
+    }
+    
+    .technique-content {
+        padding: 15px !important;
+    }
+    
+    .technique-title {
+        font-size: 1rem !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .technique-desc {
+        font-size: 0.85rem !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .technique-meta {
+        gap: 6px !important;
+    }
+    
+    .technique-type, .technique-belt {
+        font-size: 0.75rem !important;
+        padding: 4px 10px !important;
+    }
+    
+    /* ===== RATING STARS COMPACTO ===== */
+    .rating-stars {
+        gap: 4px !important;
+    }
+    
+    .star {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 0.85rem !important;
+    }
+    
+    .rating-feedback {
+        font-size: 0.9rem !important;
+        padding: 8px !important;
+    }
+    
+    /* ===== CALENDARIO COMPACTO ===== */
+    .calendar {
+        padding: 12px !important;
+    }
+    
+    .calendar-header {
+        margin-bottom: 12px !important;
+    }
+    
+    .calendar-nav h3 {
+        font-size: 1rem !important;
+    }
+    
+    .calendar-day-header {
+        font-size: 0.8rem !important;
+        padding: 5px !important;
+    }
+    
+    .calendar-day {
+        min-height: 45px !important;
+        padding: 3px !important;
+        font-size: 0.8rem !important;
+    }
+    
+    .day-number {
+        font-size: 0.8rem !important;
+    }
+    
+    .event-dot {
+        width: 8px !important;
+        height: 8px !important;
+    }
+    
+    /* ===== OBJETIVOS COMPACTO ===== */
+    .objective-item {
+        padding: 12px !important;
+    }
+    
+    .objective-header {
+        margin-bottom: 8px !important;
+    }
+    
+    .objective-title {
+        font-size: 0.95rem !important;
+    }
+    
+    .objective-date {
+        font-size: 0.75rem !important;
+    }
+    
+    .objective-description {
+        font-size: 0.85rem !important;
+        padding: 8px !important;
+    }
+    
+    .objective-actions {
+        gap: 6px !important;
+    }
+    
+    .objective-actions .btn {
+        padding: 6px 10px !important;
+        font-size: 0.75rem !important;
+    }
+    
+    /* ===== TABLAS COMPACTAS ===== */
+    table {
+        font-size: 0.85rem !important;
+    }
+    
+    th, td {
+        padding: 8px !important;
+    }
+    
+    /* ===== NOTIFICACIONES COMPACTAS ===== */
+    .notification-item {
+        padding: 12px !important;
+    }
+    
+    .notification-content h4 {
+        font-size: 0.9rem !important;
+    }
+    
+    .notification-content p {
+        font-size: 0.8rem !important;
+    }
+    
+    .notification-content small {
+        font-size: 0.7rem !important;
+    }
+    
+    /* ===== UTILIDADES RESPONSIVE ===== */
+    .mobile-text-small {
+        font-size: 0.85rem !important;
+    }
+    
+    .mobile-gap-sm {
+        gap: 6px !important;
+    }
+    
+    .mobile-mb-2 {
+        margin-bottom: 8px !important;
+    }
+    
+    .mobile-p-2 {
+        padding: 8px !important;
+    }
+}
+
+/* Ajustes adicionales para móviles muy pequeños */
+@media (max-width: 480px) {
+    body {
+        font-size: 13px !important;
+    }
+    
+    .card {
+        padding: 10px 12px !important;
+    }
+    
+    .stat-item {
+        padding: 8px 10px !important;
+    }
+    
+    .stat-icon {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 0.8rem !important;
+        margin-right: 8px !important;
+    }
+    
+    .stat-value {
+        font-size: 1rem !important;
+    }
+    
+    .btn {
+        padding: 8px 12px !important;
+        font-size: 0.8rem !important;
+        min-height: 36px !important;
+    }
+    
+    .btn-action {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 0.8rem !important;
+    }
+    
+    .star {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 0.75rem !important;
+    }
+    
+    .calendar-day {
+        min-height: 40px !important;
+        font-size: 0.7rem !important;
+    }
+    
+    .gameplan-card {
+        padding: 12px !important;
+    }
+    
+    .modal-header {
+        padding: 12px 15px !important;
+    }
+    
+    .modal-body {
+        padding: 15px !important;
+    }
+}
+
+/* Mejoras para orientación horizontal */
+@media (max-width: 768px) and (orientation: landscape) {
+    .dashboard {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    .gameplan-list {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    .technique-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    .students-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    .calendar-grid {
+        grid-template-columns: repeat(7, 1fr) !important;
+    }
+    
+    .calendar-day {
+        min-height: 60px !important;
+    }
+}
+
+/* Mejoras táctiles */
+@media (hover: none) and (pointer: coarse) {
+    .btn, button, .nav-item, .stat-item {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .btn:active, button:active, .nav-item:active, .stat-item:active {
+        opacity: 0.7;
+        transform: scale(0.98);
+    }
+    
+    /* Aumentar área táctil para elementos pequeños */
+    .btn-action, .star, .event-dot, .more-events {
+        min-width: 44px !important;
+        min-height: 44px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    /* Ajustar para que los botones de acción tengan área táctil suficiente */
+    .gameplan-actions {
+        gap: 12px !important;
+    }
+    
+    .btn-action {
+        width: 44px !important;
+        height: 44px !important;
+    }
+}
+
+/* ===== NUEVAS MEJORAS PARA DASHBOARD ===== */
+
+/* Dashboard más limpio en móvil */
+@media (max-width: 768px) {
+    /* Ocultar elementos menos importantes en móvil */
+    .dashboard .card:not(:first-child):not(:nth-child(2)) {
+        /* Esto es opcional, depende de tus cards */
+    }
+    
+    /* Mejorar la jerarquía visual */
+    .dashboard .card .stats {
+        gap: 8px !important;
+    }
+    
+    /* Hacer que las cards tengan altura consistente */
+    .dashboard .card {
+        min-height: auto !important;
+    }
+    
+    /* Ajustar la card de sensaciones (gráfico) */
+    .dashboard .card:has(#feeling-chart-container) {
+        padding: 10px !important;
+    }
+    
+    #feeling-chart-container {
+        height: 150px !important;
+    }
+    
+    /* Simplificar la card de próximos eventos */
+    #upcoming-events .stat-item {
+        padding: 8px 10px !important;
+    }
+    
+    #upcoming-events .stat-item .stat-info {
+        gap: 8px !important;
+    }
+    
+    #upcoming-events .stat-icon {
+        width: 32px !important;
+        height: 32px !important;
+    }
+    
+    #upcoming-events .stat-text p {
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        max-width: 120px !important;
+    }
+    
+    /* Mejorar la card de objetivos */
+    .objective-dashboard-item {
+        padding: 10px !important;
+    }
+    
+    .objective-dashboard-title {
+        font-size: 0.9rem !important;
+    }
+    
+    .objective-dashboard-date {
+        font-size: 0.7rem !important;
+    }
+    
+    .objective-dashboard-description {
+        font-size: 0.8rem !important;
+        -webkit-line-clamp: 2 !important;
+        line-clamp: 2 !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .progress-bar {
+        height: 6px !important;
+    }
+    
+    .badge {
+        font-size: 0.7rem !important;
+        padding: 3px 8px !important;
+    }
+}
+
+/* ===== ANIMACIONES SUAVES ===== */
+@media (max-width: 768px) {
+    .card, .stat-item, .session-item, .gameplan-card, .technique-card {
+        transition: all 0.2s ease !important;
+    }
+    
+    .sidebar {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+    
+    .modal-content {
+        animation: slideUpMobile 0.3s ease-out !important;
+    }
+    
+    @keyframes slideUpMobile {
+        from {
+            transform: translateY(30px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+}
+
+/* ===== UTILIDADES EXTRA ===== */
+@media (max-width: 768px) {
+    /* Ocultar en móvil */
+    .hide-on-mobile {
+        display: none !important;
+    }
+    
+    /* Mostrar en móvil */
+    .show-on-mobile {
+        display: block !important;
+    }
+    
+    /* Centrar texto en móvil */
+    .mobile-text-center {
+        text-align: center !important;
+    }
+    
+    /* Flex column en móvil */
+    .mobile-flex-column {
+        flex-direction: column !important;
+    }
+    
+    /* Gap reducido en móvil */
+    .mobile-gap-sm {
+        gap: 8px !important;
+    }
+    
+    /* Width completo en móvil */
+    .mobile-w-100 {
+        width: 100% !important;
+    }
+    
+    /* Padding reducido en móvil */
+    .mobile-p-0 {
+        padding: 0 !important;
+    }
+    
+    .mobile-p-2 {
+        padding: 8px !important;
+    }
+    
+    .mobile-p-3 {
+        padding: 12px !important;
+    }
+    
+    /* Margin reducido en móvil */
+    .mobile-m-0 {
+        margin: 0 !important;
+    }
+    
+    .mobile-mb-2 {
+        margin-bottom: 8px !important;
+    }
+    
+    .mobile-mt-2 {
+        margin-top: 8px !important;
+    }
+}
+
+/* ===== SAFE AREAS PARA NOTCH ===== */
+@supports (padding: max(0px)) {
+    @media (max-width: 768px) {
+        .sidebar {
+            padding-top: max(15px, env(safe-area-inset-top)) !important;
+            padding-bottom: max(15px, env(safe-area-inset-bottom)) !important;
+        }
+        
+        .main-content {
+            padding-left: max(15px, env(safe-area-inset-left)) !important;
+            padding-right: max(15px, env(safe-area-inset-right)) !important;
+            padding-bottom: max(15px, env(safe-area-inset-bottom)) !important;
+        }
+        
+        .header {
+            padding-top: max(10px, env(safe-area-inset-top)) !important;
+            padding-left: max(15px, env(safe-area-inset-left)) !important;
+            padding-right: max(15px, env(safe-area-inset-right)) !important;
+        }
+        
+        .floating-action-btn {
+            bottom: max(20px, env(safe-area-inset-bottom)) !important;
+            right: max(20px, env(safe-area-inset-right)) !important;
+        }
+    }
+}
     </style>
 </head>
 <body>
