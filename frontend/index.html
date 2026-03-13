@@ -11,6 +11,17 @@
     <meta name="msapplication-tap-highlight" content="no">
     <title>BJJ Club Platform - Versión Unificada</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Meta tags para iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="BJJ Club">
+
+    <!-- Favicon e íconos -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="/icons/icon-152x152.png">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
@@ -7791,10 +7802,6 @@ button[onclick*="closeSessionDetail"]:hover {
 
 /* Dashboard más limpio en móvil */
 @media (max-width: 768px) {
-    /* Ocultar elementos menos importantes en móvil */
-    .dashboard .card:not(:first-child):not(:nth-child(2)) {
-        /* Esto es opcional, depende de tus cards */
-    }
     
     /* Mejorar la jerarquía visual */
     .dashboard .card .stats {
@@ -7971,12 +7978,9 @@ button[onclick*="closeSessionDetail"]:hover {
             padding-right: max(15px, env(safe-area-inset-right)) !important;
         }
         
-        .floating-action-btn {
-            bottom: max(20px, env(safe-area-inset-bottom)) !important;
-            right: max(20px, env(safe-area-inset-right)) !important;
-        }
     }
 }
+
     </style>
 </head>
 <body>
@@ -23940,60 +23944,7 @@ function esMovil() {
 
 // 2. Inicializar todo para móvil
 function initMovil() {
-    console.log('📱 Configurando para móvil...');
-    
-    // Prevenir zoom en inputs
-    document.addEventListener('touchstart', function(e) {
-        if (e.target.matches('input, select, textarea')) {
-            e.target.style.fontSize = '16px';
-        }
-    });
-    
-    // Ajustar altura para navegadores móviles
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', vh + 'px');
-    
-    const appContainer = document.querySelector('.app-container');
-    if (appContainer) {
-        appContainer.style.height = 'calc(var(--vh, 1vh) * 100)';
-    }
-    
-    // Crear botón flotante si no existe
-    if (!document.getElementById('fab-movil')) {
-        const fab = document.createElement('button');
-        fab.id = 'fab-movil';
-        fab.className = 'floating-action-btn';
-        fab.innerHTML = '<i class="fas fa-bolt"></i>';
-        fab.title = 'Acción rápida';
-        
-        fab.onclick = function() {
-            const activo = document.querySelector('.module.active');
-            if (activo) {
-                const id = activo.id;
-                
-                if (id === 'dashboard' && document.getElementById('training-session-form')) {
-                    document.getElementById('training-session-form').scrollIntoView({ behavior: 'smooth' });
-                }
-                else if (id === 'gameplan' && document.getElementById('new-gameplan-btn')) {
-                    document.getElementById('new-gameplan-btn').click();
-                }
-                else if (id === 'library' && document.getElementById('add-technique-button')) {
-                    document.getElementById('add-technique-button').click();
-                }
-                else if (id === 'config' && document.getElementById('add-objective-btn')) {
-                    document.getElementById('add-objective-btn').click();
-                }
-                else {
-                    showToast('Presiona para acción principal', 'info');
-                }
-            }
-        };
-        
-        document.body.appendChild(fab);
-    }
-    
-    console.log('✅ Móvil configurado');
-}
+    console.log('📱 Configurando para móvil...');}
 
 // 3. Remover configuraciones móviles
 function removerMovil() {
@@ -25845,6 +25796,17 @@ window.addEventListener('configModuleLoaded', function() {
     loadConfigData();
 });
 
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+          console.log('✅ Service Worker registrado:', registration.scope);
+        })
+        .catch(error => {
+          console.log('❌ Error registrando Service Worker:', error);
+        });
+    });
+  }
 
 // Hacer las funciones globales
 window.approveTechnique = approveTechnique;
