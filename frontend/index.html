@@ -19030,7 +19030,7 @@ async function loadStudentsData(filters = {}) {
         }
         
         const queryString = queryParams.toString();
-        const url = `http://localhost:5000/api/students${queryString ? `?${queryString}` : ''}`;
+        const url = `https://bjj-app-backend.onrender.com/api/students${queryString ? `?${queryString}` : ''}`;
         
         console.log('🔗 URL de solicitud:', url);
         
