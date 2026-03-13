@@ -34,25 +34,44 @@ self.addEventListener('activate', event => {
 
 // Estrategia: Network First, fallback a cache
 self.addEventListener('fetch', event => {
-  // No cachear peticiones a la API
-  if (event.request.url.includes('/api/')) {
-    event.respondWith(fetch(event.request));
+  const url = new URL(event.request.url);
+  
+  // Para peticiones API: SIEMPRE red, NUNCA cache
+  if (url.pathname.startsWith('/api/') || url.hostname.includes('onrender.com')) {
+    event.respondWith(
+      fetch(event.request)
+        .then(response => response)
+        .catch(error => {
+          console.log('❌ Error fetching API:', error);
+          return new Response(JSON.stringify({ error: 'Sin conexión al servidor' }), {
+            status: 503,
+            headers: { 'Content-Type': 'application/json' }
+          });
+        })
+    );
     return;
   }
 
+  // Para archivos estáticos: cache first (el resto igual)
   event.respondWith(
-    fetch(event.request)
-      .then(response => {
-        // Si la petición es exitosa, clonar y guardar en cache
-        const responseClone = response.clone();
-        caches.open(CACHE_NAME).then(cache => {
-          cache.put(event.request, responseClone);
+    caches.match(event.request)
+      .then(cachedResponse => {
+        if (cachedResponse) {
+          return cachedResponse;
+        }
+        return fetch(event.request).then(response => {
+          // Solo cachear respuestas exitosas de archivos estáticos
+          if (!response || response.status !== 200 || !response.url.match(/\.(html|css|js|png|jpg|svg|ico)$/)) {
+            return response;
+          }
+          
+          const responseToCache = response.clone();
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, responseToCache);
+          });
+          
+          return response;
         });
-        return response;
-      })
-      .catch(() => {
-        // Si falla la red, buscar en cache
-        return caches.match(event.request);
       })
   );
 });
