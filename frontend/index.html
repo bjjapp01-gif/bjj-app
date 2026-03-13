@@ -7251,7 +7251,6 @@ button[onclick*="closeSessionDetail"]:hover {
 .dashboard .stats {
     display: flex !important;
     flex-direction: column !important;
-    justify-content: space-between !important;
     flex: 1 !important;
 }
 
@@ -9702,605 +9701,1970 @@ const BJJ_TECHNIQUES_DATABASE = [
     // ========================== GUARDIAS ==========================
     {
         id: 'guard-closed',
-        name: 'Guardia Cerrada',
+        name: 'Closed Guard',
         type: 'guard',
         belt_level: 'white',
         level: 'beginner',
-        description: 'Guardia básica con piernas cerradas alrededor del oponente. Ofrece control cercano y oportunidades para sumisiones y barridas.',
+        description: 'La guardia cerrada o "Full Guard". Consiste en envolver las piernas alrededor de la cintura del oponente y cruzarlas a la espalda. Su objetivo principal es romper la postura del rival para controlar su torso y crear oportunidades para sumisiones (como triángulos o kimuras) y barridos. Es una de las posiciones más icónicas del BJJ.',
+        category: 'position'
+    },
+    {
+        id: 'guard-half',
+        name: 'Half Guard',
+        type: 'guard',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'La media guardia. Se caracteriza por tener una de las piernas del oponente atrapada entre las nuestras. Es una posición de transición muy común, pero que cuenta con innumerables variantes (profunda, con escudo, etc.) que permiten tanto defender como atacar con barridos y sumisiones.',
         category: 'position'
     },
     {
         id: 'guard-open',
-        name: 'Guardia Abierta',
+        name: 'Open Guard',
         type: 'guard',
         belt_level: 'white',
         level: 'beginner',
-        description: 'Guardia con piernas abiertas controlando al oponente. Permite mayor movilidad y variedad de ataques compared to guardia cerrada.',
+        description: 'La guardia abierta es un término general para cualquier guardia donde las piernas no están cerradas alrededor del oponente. Los pies y manos se usan para controlar la distancia, enganchar y crear ángales de ataque. Abarca un sinfín de variantes como la De La Riva, Spider, Mariposa, etc.',
         category: 'position'
     },
     {
-        id: 'de-la-riva',
-        name: 'Guardia De La Riva',
+        id: 'guard-butterfly',
+        name: 'Butterfly Guard',
         type: 'guard',
         belt_level: 'blue',
         level: 'intermediate',
-        description: 'Guardia con un pie enganchado en la pierna interna del oponente. Ideal para controlar la distancia y ejecutar barridas anguladas.',
+        description: 'Guardia Mariposa. El practicante se sienta frente a su oponente con ambos pies enganchados por dentro de los muslos del rival (conocidos como "ganchos de mariposa"). Es una guardia muy dinámica, ideal para desequilibrar, elevar al oponente y ejecutar potentes barridos. Fue popularizada por el legendario Marcelo Garcia.',
         category: 'position'
     },
     {
-        id: 'spider-guard',
-        name: 'Guardia Araña',
+        id: 'guard-collar-sleeve',
+        name: 'Collar and Sleeve Guard',
         type: 'guard',
-        belt_level: 'purple',
-        level: 'intermediate',
-        description: 'Guardia usando los pies en los bíceps del oponente para control. Excelente para romper la postura del oponente y crear oportunidades de barrida o sumisión.',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'Guardia de manga y solapa. Es una guardia abierta fundamental en el BJJ con gi. Se controla al oponente sujetando su manga con una mano y su solapa con la otra, mientras los pies se colocan en la cadera y el bíceps para mantener la distancia. Es excelente para aprender conceptos de control y romper la postura.',
         category: 'position'
     },
-    {
-        id: 'butterfly-guard',
-        name: 'Guardia Mariposa',
-        type: 'guard',
-        belt_level: 'blue',
-        level: 'intermediate',
-        description: 'Guardia con ganchos en el interior de los muslos del oponente. Muy efectiva para barridas rápidas y transiciones a posiciones dominantes.',
-        category: 'position'
-    },
-    {
-        id: 'half-guard',
-        name: 'Media Guardia',
+
+     {
+        id: 'guard-half-deep',
+        name: 'Deep Half Guard',
         type: 'guard',
         belt_level: 'blue',
         level: 'intermediate',
-        description: 'Posición donde se controla una pierna del oponente entre las propias piernas. Versátil para defensa, barridas y transiciones.',
+        description: 'Media guardia profunda. El practicante se coloca debajo del oponente, con la cabeza apoyada en el muslo lejano y ambas piernas atrapando una de las piernas del rival. Es una posición muy estable que permite barridos potentes con poco esfuerzo, popular entre grapplers de todas las edades. También se le conoce como "Deep Half".',
         category: 'position'
     },
     {
-        id: 'turtle',
-        name: 'Tortuga',
+        id: 'guard-z',
+        name: 'Z Guard / Knee Shield',
         type: 'guard',
         belt_level: 'blue',
         level: 'intermediate',
-        description: 'Posición defensiva en la que se está sobre manos y rodillas, protegiendo el cuello y los brazos. Usada para evitar pasajes de guardia y escapar a posiciones más favorables.',
+        description: 'Guardia Z o de escudo de rodilla. Es una variante de la media guardia donde se usa la espinilla de la pierna de arriba para crear un "escudo" contra el pecho o la cadera del oponente, manteniendo la distancia y creando una fuerte estructura defensiva desde la cual atacar.',
         category: 'position'
     },
     {
-        id: 'x-guard',
-        name: 'Guardia X',
+        id: 'guard-half-lockdown',
+        name: 'Lockdown Guard',
         type: 'guard',
-        belt_level: 'purple',
-        level: 'advanced',
-        description: 'Guardia avanzada donde se envuelve una pierna del oponente con ambas piernas. Ideal para barridas de gran leverage y transiciones a posiciones dominantes.',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Popularizada por Eddie Bravo y el sistema 10th Planet Jiu-Jitsu. Es una variante de la media guardia donde las piernas se enredan de forma específica (la pierna de fuera engancha por detrás la pierna del oponente y se "traba" con la otra pierna) para inmovilizar y desequilibrar al rival. ',
         category: 'position'
     },
     {
-        id: 'reverse-de-la-riva',
-        name: 'Guardia De La Riva Inversa',
+        id: 'guard-half-butterfly',
+        name: 'Half Butterfly Guard',
         type: 'guard',
         belt_level: 'purple',
         level: 'advanced',
-        description: 'Variación de la De La Riva con el pie enganchado en la pierna externa del oponente. Ofrece ángulos únicos para barridas y ataques.',
+        description: 'Media mariposa. Combina conceptos de la media guardia y la guardia mariposa. Una pierna atrapa la del oponente (media guardia) mientras la otra se usa como un gancho de mariposa por dentro del muslo contrario. Es una posición excelente para elevar y desequilibrar al rival. ',
         category: 'position'
     },
     {
-        id: 'worm-guard',
-        name: 'Guardia Gusano',
+        id: 'guard-half-coyote',
+        name: 'Coyote Guard',
+        type: 'guard',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Guardia Coyote. Una variante moderna y dinámica de la media guardia que busca constantemente el underneath hook y transiciones rápidas para tomar la espalda o barrer al oponente. Muy utilizada en la actualidad. ',
+        category: 'position'
+    },
+    {
+        id: 'guard-octopus',
+        name: 'Octopus Guard',
+        type: 'guard',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Guardia Pulpo. Una posición única donde el practicante se gira hacia afuera, lejos del oponente, enganchando su pierna más cercana y usando un brazo para controlar su cadera. Es una posición de recuperación y ataque que permite tomar la espalda de forma inesperada. ',
+        category: 'position'
+    },
+
+    {
+        id: 'guard-de-la-riva',
+        name: 'De La Riva Guard',
+        type: 'guard',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Guardia De La Riva, nombrada así por el cinturón negro Ricardo De La Riva. Se engancha una pierna por detrás de la pierna delantera del oponente, mientras la otra pierna presiona su cadera o muslo contrario. Es una de las guardias más versátiles contra oponentes de pie y es la puerta de entrada al complejo juego del berimbolo. ',
+        category: 'position'
+    },
+    {
+        id: 'guard-reverse-de-la-riva',
+        name: 'Reverse De La Riva Guard',
+        type: 'guard',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Guardia Reverse De La Riva. Es la variante inversa de la De La Riva, donde el gancho de la pierna se coloca por dentro del muslo del oponente, en lugar de por fuera. Es muy efectiva para controlar a pasadores que presionan de pie y para iniciar barridos o transiciones a la X-Guard. ',
+        category: 'position'
+    },
+    {
+        id: 'guard-spider',
+        name: 'Spider Guard',
+        type: 'guard',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Guardia Araña. Una guardia de control muy potente y específica del gi. Los pies se colocan en los bíceps del oponente mientras las manos tiran de sus mangas. Esto crea un efecto de "marioneta" que permite desequilibrar al rival y abrir oportunidades para ataques como triángulos y omoplatas. ',
+        category: 'position'
+    },
+    {
+        id: 'guard-lasso',
+        name: 'Lasso Guard',
+        type: 'guard',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Guardia Lazo. Similar a la Spider, pero un pie se engancha por dentro de la manga del oponente, creando un "lazo" que atrapa su brazo. Esto libera una mano para controlar la solapa u otra zona, ofreciendo un control asimétrico y opciones de ataque únicas. ',
+        category: 'position'
+    },
+    {
+        id: 'guard-x',
+        name: 'X-Guard',
+        type: 'guard',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Guardia X. Una guardia de piernas (leg entanglement) donde el practicante se sitúa debajo del oponente con sus piernas formando una "X" para controlar la pierna más lejana del rival. Es una posición excelente para desequilibrar y barrer a oponentes de pie, así como para atacar piernas. ',
+        category: 'position'
+    },
+    {
+        id: 'guard-single-leg-x',
+        name: 'Single Leg X-Guard (SLX)',
+        type: 'guard',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Guardia Single Leg X o Ashi Garami (en el contexto de piernas). Similar a la X-Guard, pero se enfoca en aislar una sola pierna del oponente, con una pierna del defensor enganchada por fuera y la otra por dentro. Es la guardia por excelencia en el moderno juego de leg locks, especialmente en no-gi. Popularizada por grapplers como Garry Tonon y Gordon Ryan. ',
+        category: 'position'
+    },
+    {
+        id: 'guard-shin-to-shin',
+        name: 'Shin to Shin Guard',
+        type: 'guard',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Guardia Shin to Shin (espinilla con espinilla). Una guardia de transición donde el practicante se sienta y conecta su espinilla con la espinilla del oponente que está de pie. Es una puerta de entrada fantástica a otras guardias como la Single Leg X o la X-Guard. ',
+        category: 'position'
+    },
+    {
+        id: 'guard-rubber',
+        name: 'Rubber Guard',
+        type: 'guard',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Guardia de Goma. Una guardia cerrada avanzada y característica del sistema 10th Planet Jiu-Jitsu. Requiere una gran flexibilidad, ya que consiste en enganchar un pie detrás de la nuca o la espalda del oponente para inmovilizar su postura y abrir ataques únicos como la gogoplata. ',
+        category: 'position'
+    },
+
+    {
+        id: 'guard-lapel-general',
+        name: 'Lapel Guard',
+        type: 'guard',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Guardia de Solapa (término general). Se refiere a cualquier guardia que utiliza la solapa del kimono del oponente para mejorar el control y las opciones de ataque. Es un sistema complejo que incluye la Worm Guard, la Lapel Worm, etc. Popularizado por Keenan Cornelius. ',
+        category: 'position'
+    },
+    {
+        id: 'guard-worm',
+        name: 'Worm Guard',
+        type: 'guard',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Guardia Gusano. Una de las guardias de solapa más famosas, desarrollada por Keenan Cornelius. También conocida como "Minhoca Guard" en portugués. Se caracteriza por envolver la solapa del oponente alrededor de la propia espinilla, creando un control asimétrico que restringe el movimiento y permite barridos y tomas de espalda. El nombre fue acuñado por André Galvão. ',
+        category: 'position'
+    },
+    {
+        id: 'guard-polish-worm',
+        name: 'Polish Worm Guard',
         type: 'guard',
         belt_level: 'brown',
-        level: 'advanced',
-        description: 'Guardia avanzada que utiliza el gi del oponente para envolver su cuerpo o piernas. Ofrece control extremo y oportunidades de sumisión.',
+        level: 'expert',
+        description: 'Guardia Polish Worm. Una variante avanzada del sistema de guardias de solapa, popularizada por Manuel Ribamar. Se utiliza como un contra-ataque efectivo cuando el oponente se arrodilla para defender la Worm Guard tradicional, ofreciendo transiciones a barridos y sumisiones. ',
         category: 'position'
     },
 
-    // ========================== SUMISIONES DESDE GUARDIA ==========================
     {
-        id: 'armbar-from-guard',
-        name: 'Armbar desde Guardia',
-        type: 'submission',
-        belt_level: 'white',
-        level: 'beginner',
-        description: 'Llave de brazo aplicada desde la posición de guardia. Imobiliza el brazo del oponente y hyperextiende el codo.',
-        category: 'submission'
-    },
-    {
-        id: 'triangle-from-guard',
-        name: 'Triángulo desde Guardia',
-        type: 'submission',
-        belt_level: 'blue',
-        level: 'intermediate',
-        description: 'Estrangulación con las piernas desde guardia. Atrapa la cabeza y un brazo del oponente entre las piernas en forma de triángulo.',
-        category: 'submission'
-    },
-    {
-        id: 'omoplata-from-guard',
-        name: 'Omoplata desde Guardia',
-        type: 'submission',
-        belt_level: 'blue',
-        level: 'intermediate',
-        description: 'Llave de hombro aplicada desde guardia. Utiliza la pierna para aplicar presión sobre el hombro del oponente.',
-        category: 'submission'
-    },
-    {
-        id: 'gogoplata',
-        name: 'Gogoplata',
-        type: 'submission',
+        id: 'guard-5050',
+        name: '50/50 Guard',
+        type: 'guard',
         belt_level: 'purple',
         level: 'advanced',
-        description: 'Estrangulación con la pierna y el brazo desde guardia. La pierna ejerce presión sobre la tráquea del oponente.',
-        category: 'submission'
-    },
-    {
-        id: 'kimura-from-guard',
-        name: 'Kimura desde Guardia',
-        type: 'submission',
-        belt_level: 'blue',
-        level: 'intermediate',
-        description: 'Llave de hombro con control del brazo del oponente desde guardia. Aplica presión rotational sobre la articulación del hombro.',
-        category: 'submission'
-    },
-    {
-        id: 'guillotine-from-guard',
-        name: 'Guillotina desde Guardia',
-        type: 'submission',
-        belt_level: 'blue',
-        level: 'intermediate',
-        description: 'Estrangulación frontal aplicada desde guardia cuando el oponente baja la cabeza. Puede ser ejecutada con varios grips.',
-        category: 'submission'
-    },
-    {
-        id: 'back-take-from-guard',
-        name: 'Toma de Espalda desde Guardia',
-        type: 'submission',
-        belt_level: 'purple',
-        level: 'advanced',
-        description: 'Transición desde guardia cerrada para tomar la espalda del oponente, often usando un arm drag o hip escape movement.',
-        category: 'transition'
-    },
-
-    // ========================== PASES DE GUARDIA ==========================
-    {
-        id: 'knee-cut-pass',
-        name: 'Pase de Rodilla',
-        type: 'pass',
-        belt_level: 'white',
-        level: 'beginner',
-        description: 'Pase de guardia usando la rodilla para cortar a través de las piernas del oponente. Efectivo contra guardia cerrada y abierta.',
-        category: 'transition'
-    },
-    {
-        id: 'torreando-pass',
-        name: 'Pase Torreando',
-        type: 'pass',
-        belt_level: 'blue',
-        level: 'intermediate',
-        description: 'Pase de guardia empujando las piernas del oponente hacia los lados y pasando por el costado. Requiere control de distancia.',
-        category: 'transition'
-    },
-    {
-        id: 'x-pass',
-        name: 'Pase X',
-        type: 'pass',
-        belt_level: 'purple',
-        level: 'advanced',
-        description: 'Pase de guardia usando control de distancia y ángulos para comprimir las piernas del oponente y pasar al costado.',
-        category: 'transition'
-    },
-    {
-        id: 'over-under-pass',
-        name: 'Pase Sobrebajo',
-        type: 'pass',
-        belt_level: 'blue',
-        level: 'intermediate',
-        description: 'Pase de guardia que utiliza un brazo sobre y otro bajo las piernas del oponente para controlar y pasar a montada o control lateral.',
-        category: 'transition'
-    },
-    {
-        id: 'leg-drag-pass',
-        name: 'Pase de Arrastre de Pierna',
-        type: 'pass',
-        belt_level: 'purple',
-        level: 'advanced',
-        description: 'Pase de guardia que arrastra la pierna del oponente hacia un lado, exponiendo su espalda para control lateral o montada.',
-        category: 'transition'
-    },
-    {
-        id: 'stack-pass',
-        name: 'Pase por Apilamiento',
-        type: 'pass',
-        belt_level: 'blue',
-        level: 'intermediate',
-        description: 'Pase de guardia que apila las piernas del oponente sobre su propio cuerpo para comprimirlo y pasar a montada o control lateral.',
-        category: 'transition'
-    },
-
-    // ========================== BARRIDAS ==========================
-    {
-        id: 'scissor-sweep',
-        name: 'Barrida Tijera',
-        type: 'sweep',
-        belt_level: 'white',
-        level: 'beginner',
-        description: 'Barrida básica usando movimiento de tijera con las piernas desde guardia cerrada. Ideal para principiantes.',
-        category: 'sweep'
-    },
-    {
-        id: 'flower-sweep',
-        name: 'Barrida Flor',
-        type: 'sweep',
-        belt_level: 'blue',
-        level: 'intermediate',
-        description: 'Barrida desde guardia usando leverage y control de mangas para voltear al oponente sobre su cabeza.',
-        category: 'sweep'
-    },
-    {
-        id: 'pendulum-sweep',
-        name: 'Barrida Péndulo',
-        type: 'sweep',
-        belt_level: 'blue',
-        level: 'intermediate',
-        description: 'Barrida usando movimiento pendular desde guardia de mariposa o abierta. Requiere control de la manga y la pierna.',
-        category: 'sweep'
-    },
-    {
-        id: 'butterfly-sweep',
-        name: 'Barrida de Mariposa',
-        type: 'sweep',
-        belt_level: 'blue',
-        level: 'intermediate',
-        description: 'Barrida desde guardia mariposa usando los ganchos para elevar y voltear al oponente hacia un lado.',
-        category: 'sweep'
-    },
-    {
-        id: 'hip-bump-sweep',
-        name: 'Barrida de Cadera',
-        type: 'sweep',
-        belt_level: 'white',
-        level: 'beginner',
-        description: 'Barrida desde guardia que usa un movimiento de cadera para desbalancear al oponente cuando se inclina hacia adelante.',
-        category: 'sweep'
-    },
-    {
-        id: 'lumberjack-sweep',
-        name: 'Barrida Leñador',
-        type: 'sweep',
-        belt_level: 'purple',
-        level: 'advanced',
-        description: 'Barrida avanzada desde guardia que involucra controlar ambas piernas del oponente y voltearlo con un movimiento rotational.',
-        category: 'sweep'
-    },
-
-    // ========================== POSICIONES DOMINANTES ==========================
-    {
-        id: 'mount',
-        name: 'Montada',
-        type: 'position',
-        belt_level: 'white',
-        level: 'beginner',
-        description: 'Posición dominante sentado sobre el torso del oponente. Ofrece oportunidades para sumisiones y control total.',
+        description: 'Guardia 50/50. Una posición de piernas donde ambos oponentes tienen una pierna del otro atrapada de forma simétrica. Es una posición muy neutral que requiere un conocimiento profundo de leg locks para ser efectiva y se utiliza tanto para atacar como para defenderse. ',
         category: 'position'
     },
     {
-        id: 'back-mount',
-        name: 'Montada Trasera',
-        type: 'position',
-        belt_level: 'blue',
-        level: 'intermediate',
-        description: 'Posición dominante en la espalda del oponente. Considerada la posición más dominante en BJJ, con altas oportunidades de sumisión.',
+        id: 'guard-saddle',
+        name: 'Saddle Guard / 411',
+        type: 'guard',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Guardia Silla o 411. Una posición de enredo de piernas avanzada del sistema de leg locks de John Danaher. Se coloca al oponente de lado, con nuestras piernas en una configuración que aísla una de sus piernas, dejando la rodilla y el tobillo vulnerables a ataques como el heel hook. También se le conoce como "Honey Hole".',
         category: 'position'
     },
     {
-        id: 'side-control',
-        name: 'Control Lateral',
-        type: 'position',
-        belt_level: 'white',
-        level: 'beginner',
-        description: 'Posición de control al lado del oponente. Inmoviliza al oponente y permite transiciones a otras posiciones o sumisiones.',
-        category: 'position'
-    },
-    {
-        id: 'north-south',
-        name: 'Norte-Sur',
-        type: 'position',
-        belt_level: 'blue',
-        level: 'intermediate',
-        description: 'Posición de control con la cabeza del oponente entre las piernas. Dificulta que el oponente escape y ofrece sumisiones únicas.',
-        category: 'position'
-    },
-    {
-        id: 'knee-on-belly',
-        name: 'Rodilla en el Estómago',
-        type: 'position',
-        belt_level: 'blue',
-        level: 'intermediate',
-        description: 'Posición de control con la rodilla presionando el abdomen del oponente. Permite transiciones rápidas y sumisiones.',
-        category: 'position'
-    },
-    {
-        id: 'turtle-top',
-        name: 'Tortuga (Arriba)',
-        type: 'position',
-        belt_level: 'blue',
-        level: 'intermediate',
-        description: 'Posición dominante sobre el oponente en tortuga. Ofrece oportunidades para tomar la espalda o aplicar sumisiones.',
-        category: 'position'
-    },
-    {
-        id: 'kesa-gatame',
-        name: 'Kesa Gatame',
-        type: 'position',
-        belt_level: 'blue',
-        level: 'intermediate',
-        description: 'Variante de control lateral con el brazo rodeando la cabeza del oponente. Ofrece control y sumisiones como estrangulaciones.',
+        id: 'guard-cross-ashi',
+        name: 'Cross Ashi Garami',
+        type: 'guard',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Cross Ashi Garami. Otra posición de enredo de piernas del sistema Danaher. Similar a la Saddle pero con las piernas en una configuración cruzada diferente, que también expone la pierna del oponente a ataques de heel hook. Es una posición muy dinámica y peligrosa.',
         category: 'position'
     },
 
-    // ========================== SUMISIONES DESDE POSICIÓN DOMINANTE ==========================
     {
-        id: 'armbar-from-mount',
-        name: 'Armbar desde Montada',
+        id: 'guard-inverted',
+        name: 'Inverted Guard',
+        type: 'guard',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Guardia Invertida. El practicante se coloca boca abajo (invertido) con las piernas hacia el oponente. Se usa principalmente para mantener la distancia, crear ángulos inesperados y como transición a otras guardias o barridos, aunque puede ser riesgosa si no se ejecuta con precisión. ',
+        category: 'position'
+    },
+    {
+        id: 'guard-turtle',
+        name: 'Turtle Guard',
+        type: 'guard',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Guardia Tortuga. Es una posición defensiva de transición donde el practicante se pone a cuatro patas, protegiendo su espalda y cuello. Desde aquí se pueden buscar reversals (como el "sweep" de tortuga) o recuperar la guardia. Aunque es más una posición de defensa, se considera un tipo de guardia. ',
+        category: 'position'
+    },
+    {
+        id: 'guard-tornado',
+        name: 'Tornado Guard',
+        type: 'guard',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Guardia Tornado. Una guardia muy dinámica y avanzada, popularizada por Cyborg Abreu. Implica un movimiento giratorio y de inversión desde posiciones como la media guardia para desequilibrar al oponente y tomar su espalda. ',
+        category: 'position'
+    },
+    {
+        id: 'guard-k',
+        name: 'K-Guard',
+        type: 'guard',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Guardia K. Una guardia moderna que se ha vuelto muy popular en los últimos años. Es una posición de enredo de piernas que ofrece un control excepcional de la pierna y la cadera del oponente, abriendo un abanico enorme de opciones para leg locks, barridos y tomas de espalda. ',
+        category: 'position'
+    },
+
+    // ========================== SUMISIONES ==========================
+    {
+        id: 'sub-rnc',
+        name: 'Rear Naked Choke (RNC)',
         type: 'submission',
         belt_level: 'white',
         level: 'beginner',
-        description: 'Llave de brazo aplicada desde la montada. Hyperextiende el codo del oponente usando el peso corporal.',
+        description: 'Mataleón o Mata Leão en portugués. La sumisión más icónica del BJJ. Se aplica desde la espalda, rodeando el cuello con un brazo mientras el otro refuerza el agarre, bloqueando ambas arterias carótidas. Marcelo Garcia y Roger Gracie son dos de sus máximos exponentes. Legal en todas las modalidades y niveles .',
         category: 'submission'
     },
     {
-        id: 'americana',
+        id: 'sub-guillotine',
+        name: 'Guillotine Choke',
+        type: 'submission',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'Estrangulación que también aplica presión cervical. Puede ejecutarse "Arm-in" (con brazo incluido, más control) o "Arm-out" (solo cuello, más finalizadora). Común desde la guardia cerrada, media guardia o como contra al intentar pasar. Daniel Ladero es un reconocido especialista hispano. Legal en todas las modalidades .',
+        category: 'submission'
+    },
+    {
+        id: 'sub-triangle',
+        name: 'Triangle Choke',
+        type: 'submission',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'Sankaku Jime en japonés. Estrangulación que utiliza las piernas para rodear el cuello y un brazo del oponente. Se aplica principalmente desde la guardia cerrada o abierta. Edwin Najmi y Fellipe Andrew son especialistas notables. Legal en todas las modalidades .',
+        category: 'submission'
+    },
+    {
+        id: 'sub-bow-arrow',
+        name: 'Bow and Arrow Choke',
+        type: 'submission',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Arco y Flecha en español. Una de las estrangulaciones con mayor porcentaje de finalización en competición de gi. Se ejecuta desde la espalda, agarrando la solapa lejana y tirando hacia atrás como un arco. Específica de Gi. Legal en todos los cinturones .',
+        category: 'submission'
+    },
+    {
+        id: 'sub-darce',
+        name: 'D Arce Choke',
+        type: 'submission',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'También conocido como Brabo Choke (cuando se usa el gi). Es un estrangulamiento que aplica presión en ambos lados del cuello usando el brazo y el antebrazo en configuración de triángulo. Muy común desde la media guardia y la tortuga. Los hermanos Ruotolo son especialistas destacados. Funciona mejor en No-Gi pero es legal en ambas .',
+        category: 'submission'
+    },
+    {
+        id: 'sub-anaconda',
+        name: 'Anaconda Choke',
+        type: 'submission',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Similar al D Arce, pero la entrada del brazo es por el lado del cuello en lugar de la axila. Genera una sensación de estrangulación pura más que de luxación. Rafael Mendes y Marcelo Garcia lo han popularizado. Legal en todas las modalidades .',
+        category: 'submission'
+    },
+    {
+        id: 'sub-peruvian-necktie',
+        name: 'Peruvian Necktie',
+        type: 'submission',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Corbata Peruana. Una estrangulación avanzada que se aplica desde la posición de tortuga o cuando el oponente intenta un doble pierna. Combina control de cuello y brazo en un movimiento giratorio. Específica de No-Gi aunque puede adaptarse. Legal en todas las modalidades .',
+        category: 'submission'
+    },
+    {
+        id: 'sub-japanese-necktie',
+        name: 'Japanese Necktie',
+        type: 'submission',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Corbata Japonesa. Similar a la Peruana pero con una mecánica de control diferente, usualmente desde un front headlock. Muy popular en grappling y MMA. Legal en todas las modalidades .',
+        category: 'submission'
+    },
+    {
+        id: 'sub-baseball',
+        name: 'Baseball Choke',
+        type: 'submission',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Estrangulación de Bate de Béisbol. Se aplica desde la posición de rodilla en pecho (knee on belly) o montada, usando ambas manos en el cuello con un agarre similar al de un bate. Magid Hage es conocido por dominar esta técnica. Específica de Gi .',
+        category: 'submission'
+    },
+    {
+        id: 'sub-ezekiel',
+        name: 'Ezekiel Choke',
+        type: 'submission',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'Sode Guruma Jime en judo. Estrangulación que utiliza la propia manga para aplicar presión en el cuello del oponente. Puede ejecutarse desde la montada, la guardia o la espalda. Funciona mejor en Gi pero tiene versión No-Gi con el brazo desnudo. Legal en todas las modalidades .',
+        category: 'submission'
+    },
+    {
+        id: 'sub-clock-choke',
+        name: 'Clock Choke',
+        type: 'submission',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Estrangulación en forma de reloj. Se aplica cuando el oponente está en posición de cuatro apoyos (tortuga), agarrando la solapa lejana y girando alrededor de su cabeza. Específica de Gi. Legal en todos los cinturones .',
+        category: 'submission'
+    },
+    {
+        id: 'sub-cross-collar',
+        name: 'Cross Collar Choke',
+        type: 'submission',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'Corbata frontal o Juji Jime. La clásica estrangulación de solapas desde la guardia cerrada o la montada. Roger Gracie tenía una versión implacable desde la montada que finalizó innumerables combates. Específica de Gi .',
+        category: 'submission'
+    },
+
+    {
+        id: 'sub-armbar',
+        name: 'Armbar',
+        type: 'submission',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'Juji Gatame en japonés. Llave de brazo que hiperextiende el codo. Puede aplicarse desde guardia, montada, media guardia o como transición. Es la primera llave que la mayoría aprende. Legal en todas las modalidades .',
+        category: 'submission'
+    },
+    {
+        id: 'sub-kimura',
+        name: 'Kimura',
+        type: 'submission',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'Gyaku Ude Garami en japonés. También conocida como "Chicken Wing". Luxación de hombro que rota internamente el brazo. Nombrada por el legendario luchador de judo Masahiko Kimura. Se aplica desde guardia, side control o norte-sur. Legal en todas las modalidades .',
+        category: 'submission'
+    },
+    {
+        id: 'sub-americana',
         name: 'Americana',
         type: 'submission',
         belt_level: 'white',
         level: 'beginner',
-        description: 'Llave de hombro aplicada desde control lateral o montada. Aplica presión rotational sobre el hombro del oponente.',
+        description: 'Figura four, keylock o Ude Garami en japonés. Luxación de hombro que rota externamente el brazo. Común desde side control o montada. Legal en todas las modalidades .',
         category: 'submission'
     },
     {
-        id: 'kimura',
-        name: 'Kimura',
+        id: 'sub-omoplata',
+        name: 'Omoplata',
         type: 'submission',
         belt_level: 'blue',
         level: 'intermediate',
-        description: 'Llave de hombro con control de brazo. Similar a la americana pero con grip inverso y mayor leverage.',
+        description: 'Coil lock en inglés. Luxación de hombro que utiliza las piernas para aislar y rotar el brazo del oponente. Se aplica desde la guardia, especialmente desde spider o de la riva. Legal en todas las modalidades .',
         category: 'submission'
     },
+
     {
-        id: 'rear-naked-choke',
-        name: 'Estrangulación por Atrás',
+        id: 'sub-straight-ankle',
+        name: 'Straight Ankle Lock',
         type: 'submission',
         belt_level: 'blue',
         level: 'intermediate',
-        description: 'Estrangulación sanguínea aplicada desde la espalda. Corta el flujo de sangre al cerebro con el brazo alrededor del cuello.',
+        description: 'Ashi Hishigi en japonés o Recta de Tobillo. Luxación de tobillo por hiperextensión. Es la más básica y segura de las leg locks. Se aplica desde guardia, 50/50 o single leg X. Legal en Gi a partir de azul (con restricciones) y en todas las modalidades No-Gi .',
         category: 'submission'
     },
     {
-        id: 'bow-and-arrow-choke',
-        name: 'Estrangulación Arco y Flecha',
+        id: 'sub-kneebar',
+        name: 'Kneebar',
         type: 'submission',
         belt_level: 'purple',
         level: 'advanced',
-        description: 'Estrangulación desde la espalda con control de pierna y gi. Ofserve leverage adicional para una sumisión rápida.',
+        description: 'Hiza Juji Gatame en japonés o Llave de Rodilla. Hiperextensión de la rodilla. Se aplica desde guardia X, 50/50 o como contraataque. Legal en Gi a partir de marrón (con restricciones) y en No-Gi para marrón/negro. En ADCC es legal en adultos .',
         category: 'submission'
     },
     {
-        id: 'arm-triangle-choke',
-        name: 'Estrangulación de Brazo',
+        id: 'sub-toehold',
+        name: 'Toe Hold',
         type: 'submission',
-        belt_level: 'blue',
-        level: 'intermediate',
-        description: 'Estrangulación aplicada desde control lateral o montada. Usa el brazo del oponente y el propio para comprimir la carótida.',
+        belt_level: 'brown',
+        level: 'advanced',
+        description: 'Americana de pie. Luxación que torsiona el tobillo y la rodilla simultáneamente. Legal en Gi a partir de marrón en IBJJF. En No-Gi, legal para marrón/negro. ADCC lo permite .',
         category: 'submission'
     },
     {
-        id: 'paper-cutter-choke',
-        name: 'Estrangulación Cortapapeles',
+        id: 'sub-heel-hook',
+        name: 'Heel Hook',
+        type: 'submission',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Gancho de Talón. La sumisión más peligrosa y efectiva del grappling moderno, ataca los ligamentos de la rodilla mediante torsión. Puede ser interna (inside) o externa (outside). **Prohibida en Gi IBJJF todos los niveles**. **Legal en No-Gi IBJJF solo para adultos marrón y negro** (desde 2021). Legal en ADCC para todas las divisiones adultas. Grandes exponentes: Gordon Ryan, Garry Tonon, Dean Lister .',
+        category: 'submission'
+    },
+    {
+        id: 'sub-calf-slicer',
+        name: 'Calf Slicer',
+        type: 'submission',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Compresión de la pantorrilla contra el hueso. Aunque parece una llave de pierna, es una compresión muscular muy dolorosa. Se aplica desde la media guardia o posiciones de enredo. Legalidad variable: en IBJJF Gi suele permitirse a partir de marrón; en No-Gi, para marrón/negro .',
+        category: 'submission'
+    },
+
+    {
+        id: 'sub-twister',
+        name: 'Twister',
+        type: 'submission',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Una sumisión que combina compresión espinal y control de cuello, popularizada por Eddie Bravo y el sistema 10th Planet. Se aplica cuando se toma la espalda y se "retuerce" la columna del oponente agarrando la cabeza. Legal en No-Gi y ADCC; en Gi IBJJF puede ser considerada peligrosa .',
+        category: 'submission'
+    },
+    {
+        id: 'sub-gogoplata',
+        name: 'Gogoplata',
+        type: 'submission',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Kakato Jime en japonés. Estrangulación que utiliza la espinilla contra la tráquea del oponente, generalmente desde la rubber guard o la guardia alta. Requiere gran flexibilidad. Legal en Gi y No-Gi, aunque poco común .',
+        category: 'submission'
+    },
+    {
+        id: 'sub-caneshoulder',
+        name: 'Cane Choke / Shoulder Crush',
         type: 'submission',
         belt_level: 'purple',
         level: 'advanced',
-        description: 'Estrangulación desde control lateral usando el gi. Involucra cruzar las solapas para aplicar presión en el cuello.',
+        description: 'También conocida como "Cane Choke" o estrangulación de bastón. Combina presión en el cuello y el hombro usando el antebrazo. Se aplica desde side control o norte-sur. Legal en todas las modalidades.',
         category: 'submission'
     },
     {
-        id: 'buggy-choke',
+        id: 'sub-buggy',
         name: 'Buggy Choke',
         type: 'submission',
         belt_level: 'purple',
         level: 'advanced',
-        description: 'Estrangulación aplicada desde abajo en control lateral. Una sumisión poco común pero efectiva que atrapa al oponente.',
+        description: 'Una estrangulación moderna que se aplica desde debajo de la montada, rodeando la cabeza del oponente con el brazo mientras se cierra una especie de triángulo con las piernas. Popularizada por Nicky Ryan. Legal en Gi y No-Gi .',
         category: 'submission'
     },
+
+    // ========================== PASAJES ==========================
     {
-        id: 'ezekiel-choke',
-        name: 'Estrangulación Ezekiel',
-        type: 'submission',
+        id: 'pass-knee-cut',
+        name: 'Knee Cut Pass / Knee Slice',
+        type: 'pass',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'Pase de rodilla o "slicing". Consiste en cortar con la rodilla a través de la pierna del oponente mientras se controla su brazo y solapa. Extremadamente efectivo contra la guardia De La Riva y guardias abiertas. Requiere buen control de la manga lejana. Especialistas: Leandro Lo, Lucas Lepri.',
+        category: 'transition'
+    },
+    {
+        id: 'pass-torreando',
+        name: 'Torreando Pass / Bullfighter Pass',
+        type: 'pass',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'Pase de torero. Se agarran ambas pantorrillas del oponente y se "bolean" hacia un lado, pasando rápidamente a la montada o costado. Ideal contra guardias abiertas como spider o collar-sleeve. Muy utilizado en competición por su velocidad. Especialistas: Rafa Mendes, Cobrinha.',
+        category: 'transition'
+    },
+    {
+        id: 'pass-over-under',
+        name: 'Over/Under Pass',
+        type: 'pass',
         belt_level: 'blue',
         level: 'intermediate',
-        description: 'Estrangulación aplicada desde montada o guardia usando la manga del gi. Puede ser ejecutada en No-Gi con ajustes.',
-        category: 'submission'
+        description: 'Pase de "sobre y bajo". Un brazo pasa por encima de una pierna y el otro por debajo de la otra, aplastando las piernas del oponente contra su pecho. Excelente contra guardias cerradas y medias guardias. Se basa en la presión y el peso. Especialistas: Rodolfo Vieira, Bernardo Faria.',
+        category: 'transition'
+    },
+    {
+        id: 'pass-smash',
+        name: 'Smash Pass / Sao Paulo Pass',
+        type: 'pass',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Pase "aplastante". Similar al over/under pero con un énfasis en colapsar la guardia del oponente hacia un lado, aplanando su cuerpo. Muy efectivo contra la media guardia. Requiere buena base y distribución del peso.',
+        category: 'transition'
+    },
+    {
+        id: 'pass-x',
+        name: 'X-Pass',
+        type: 'pass',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Pase en X. Desde una posición de pie, se cruzan las piernas del oponente (como una X) y se pasa rápidamente al otro lado. Ideal contra guardias de piernas como Single Leg X o De La Riva invertida. Especialistas: Romulo Barral, Michael Langhi.',
+        category: 'transition'
+    },
+    {
+        id: 'pass-leg-drag',
+        name: 'Leg Drag Pass',
+        type: 'pass',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Pase arrastrando la pierna. Se aísla una pierna del oponente y se "arrastra" a través del cuerpo, exponiendo su espalda. Es un pase de alta presión y control que abre opciones de ataque a la espalda. Especialistas: Rafa Mendes, JT Torres.',
+        category: 'transition'
+    },
+    {
+        id: 'pass-long-step',
+        name: 'Long Step Pass',
+        type: 'pass',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Pase de paso largo. Se da un gran paso por encima de la pierna del oponente mientras se baja la cadera. Muy útil contra oponentes que intentan mantener distancia con sus pies en las caderas. Efectivo contra guardia De La Riva y spider.',
+        category: 'transition'
+    },
+
+        {
+        id: 'pass-toreando',
+        name: 'Toreando Pass',
+        type: 'pass',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'La versión de pie del torero. El pasador se mantiene erguido y "lidia" las piernas del oponente de lado a lado antes de comprometerse a pasar. Fundamental para aprender a pasar sin ser barrido. Especialistas: Bruno Malfacine, Caio Terra.',
+        category: 'transition'
+    },
+    {
+        id: 'pass-folding',
+        name: 'Folding Pass / Pressure Pass',
+        type: 'pass',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Pase de "plegar". Se dobla al oponente sobre sí mismo, juntando sus rodillas con su pecho. Esto inmoviliza sus piernas y permite pasar fácilmente a la montada o al costado. Muy efectivo contra guardias cerradas.',
+        category: 'transition'
+    },
+    {
+        id: 'pass-double-under',
+        name: 'Double Under Pass',
+        type: 'pass',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Pase de doble bajo. Ambos brazos pasan por debajo de las piernas del oponente, levantándolo y rompiendo su guardia. Muy poderoso contra la guardia cerrada, pero requiere buena postura para evitar ser barrido. Especialistas: Roger Gracie, Marcus "Buchecha" Almeida.',
+        category: 'transition'
+    },
+    {
+        id: 'pass-voice',
+        name: 'Voice Pass / Vocal Pass',
+        type: 'pass',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Pase vocal o "voicinho". Es un pase de doble-under pero con una mecánica específica de control de piernas que genera una presión asfixiante. Popularizado por Renato "Charuto" y su equipo.',
+        category: 'transition'
+    },
+    {
+        id: 'pass-arm-drag',
+        name: 'Arm Drag Pass',
+        type: 'pass',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Pase por arrastre de brazo. No es un pase directo de guardia, sino que se inicia arrastrando el brazo del oponente para exponer su espalda y luego pasando. Funciona contra todo tipo de guardias abiertas. Especialistas: Marcelo Garcia, Lucas Lepri.',
+        category: 'transition'
+    },
+
+        {
+        id: 'pass-berimbolo',
+        name: 'Berimbolo Pass',
+        type: 'pass',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'El "berimbolo" es más conocido como un barrido, pero también se utiliza como pase. Desde la guardia De La Riva invertida, se gira al oponente y se termina pasando directamente a la espalda o al costado. Popular en las categorías más ligeras. Especialistas: Los hermanos Mendes, Miyao brothers.',
+        category: 'transition'
+    },
+    {
+        id: 'pass-cartwheel',
+        name: 'Cartwheel Pass',
+        type: 'pass',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Pase de voltereta lateral o "rueda de carro". Una maniobra acrobática que se usa para evadir las piernas del oponente y caer directamente en una posición dominante. Requiere gran agilidad y coordinación. Especialistas: Geo Martinez (10th Planet).',
+        category: 'transition'
+    },
+    {
+        id: 'pass-flip',
+        name: 'Flip Over Pass / Backflip Pass',
+        type: 'pass',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Pase de vuelta o salto mortal. Similar al cartwheel pero más vertical. Se usa para sorprender al oponente y pasar por encima de su guardia. Legal, pero requiere precisión para evitar lesiones.',
+        category: 'transition'
+    },
+    {
+        id: 'pass-crab-ride',
+        name: 'Crab Ride Pass',
+        type: 'pass',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'No es un pase en sí, sino una posición de control desde la espalda. Sin embargo, la transición desde la guardia a Crab Ride es un método avanzado de pase donde se trepa por la espalda del oponente desde una posición de guardia. Muy popular en el Jiu-Jitsu moderno.',
+        category: 'transition'
+    },
+    {
+        id: 'pass-jackhammer',
+        name: 'Jackhammer Pass',
+        type: 'pass',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Pase de martillo neumático. Consiste en forzar la guardia separando violentamente las rodillas del oponente hacia abajo, generalmente cuando está en guardia cerrada y su postura está rota. Riesgo de ser barrido si no se ejecuta con rapidez.',
+        category: 'transition'
+    },
+
+        {
+        id: 'pass-half-knee-cut',
+        name: 'Half Guard Knee Cut',
+        type: 'pass',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'El corte de rodilla aplicado específicamente desde la media guardia. Se libera la pierna atrapada y se corta hacia el costado. La clave está en el control de la cabeza o el brazo lejano.',
+        category: 'transition'
+    },
+    {
+        id: 'pass-half-back-step',
+        name: 'Back Step Pass',
+        type: 'pass',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Pase de paso atrás desde media guardia. En lugar de cortar hacia adelante, se da un paso hacia atrás para "desenrollar" al oponente y terminar en su espalda o en posición de 94. Es una entrada común a leg locks si el oponente se defiende. Especialistas: Gordon Ryan, John Danaher.',
+        category: 'transition'
+    },
+    {
+        id: 'pass-half-darce',
+        name: 'Darce Pass',
+        type: 'pass',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Desde la media guardia, se atrapa un D Arce choke mientras se pasa, usando la estrangulación para forzar el pase. Si la sumisión no se completa, se termina en una posición de control avanzada.',
+        category: 'transition'
+    },
+    {
+        id: 'pass-half-marce',
+        name: 'Marce Pass',
+        type: 'pass',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Una variante del pase de media guardia donde se usa un control similar al D Arce pero con una mecánica de rodamiento que lleva directo a la espalda. Muy utilizado en No-Gi.',
+        category: 'transition'
+    },
+    {
+        id: 'pass-half-windshield',
+        name: 'Windshield Wiper Pass',
+        type: 'pass',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Pase de limpiaparabrisas. Se usa cuando el oponente tiene una media guardia con "escudo" (Z guard). Se balancea la pierna atrapada hacia adentro y hacia afuera para romper el escudo y liberar la pierna.',
+        category: 'transition'
+    },
+
+        {
+        id: 'pass-jumping',
+        name: 'Jumping Pass / Flying Pass',
+        type: 'pass',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Pase saltando. El pasador salta por encima de las piernas del oponente cuando este intenta mantener la guardia abierta. Requiere un buen timing. Si falla, se puede caer en una sumisión.',
+        category: 'transition'
+    },
+    {
+        id: 'pass-kip',
+        name: 'Kip Up Pass',
+        type: 'pass',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Pase de "kip" o impulso. Cuando el oponente levanta al pasador con sus piernas, este usa el impulso para dar una voltereta hacia adelante y terminar pasando la guardia.',
+        category: 'transition'
+    },
+    {
+        id: 'pass-cartwheel-specific',
+        name: 'Cartwheel Pass',
+        type: 'pass',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Pase de voltereta lateral. Ya mencionado, pero es una categoría propia por su naturaleza acrobática. Efectivo contra guardias de piernas abiertas donde el oponente busca hooks de mariposa.',
+        category: 'transition'
+    },
+    
+        {
+        id: 'pass-combat-base',
+        name: 'Combat Base Pass',
+        type: 'pass',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'Pase desde base de combate. Se refiere a la posición inicial de rodillas para romper la guardia cerrada. No es un pase final, sino la preparación para otros como el over/under o el double under.',
+        category: 'transition'
+    },
+    {
+        id: 'pass-to-north-south',
+        name: 'North South Pass',
+        type: 'pass',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Pase a norte-sur. Consiste en pasar la guardia para terminar directamente en la posición norte-sur (cabeza con cabeza), desde donde se pueden atacar kimuras o estrangulaciones.',
+        category: 'transition'
+    },
+    {
+        id: 'pass-stack',
+        name: 'Stack Pass',
+        type: 'pass',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Pase de apilamiento. Se levanta al oponente sobre sus hombros, "apilándolo", para romper su guardia y pasar. Muy efectivo contra luchadores largos o con buena flexibilidad.',
+        category: 'transition'
+    },
+    {
+        id: 'pass-pressure-half',
+        name: 'Pressure Half Guard Pass',
+        type: 'pass',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Pase de presión desde media guardia. Se basa en mantener el peso constante sobre el oponente, evitando que recupere la guardia, mientras se libera lentamente la pierna. Especialistas: Murilo Santana, Bernardo Faria.',
+        category: 'transition'
+    },
+
+    // ========================== INVERSIONES ==========================
+    {
+        id: 'sweep-scissor',
+        name: 'Scissor Sweep',
+        type: 'sweep',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'Barrida tijera. La inversión más clásica desde guardia cerrada. Consiste en controlar manga y solapa del mismo lado, girar sobre la cadera y usar las piernas en movimiento de tijera para derribar al oponente. La clave está en romper la postura y que la espinilla de la pierna de arriba cruce el abdomen del rival. Especialistas: Roger Gracie, Fabio Leopoldo .',
+        category: 'sweep'
+    },
+    {
+        id: 'sweep-hip-bump',
+        name: 'Hip Bump Sweep',
+        type: 'sweep',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'Barrida de cadera o "sit-up sweep". Ideal cuando el oponente mantiene la postura erguida. Se eleva la cadera empujando con los pies mientras se tira del brazo, desequilibrando al rival hacia atrás. Si postea la mano, se puede encadenar con un triángulo. Muy efectiva contra oponentes que se sientan pesados .',
+        category: 'sweep'
+    },
+    {
+        id: 'sweep-pendulum',
+        name: 'Pendulum Sweep',
+        type: 'sweep',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'Barrida péndulo. Se controla el brazo y la pierna del mismo lado del oponente, balanceando las piernas como un péndulo para generar momentum y derribarlo hacia el lado contrario. Requiere buen timing y coordinación. Muy popular en las categorías más ligeras .',
+        category: 'sweep'
+    },
+    {
+        id: 'sweep-flower',
+        name: 'Flower Sweep',
+        type: 'sweep',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'Barrida flor o "kick over sweep". Se controla un brazo del oponente contra el pecho y la rodilla contraria con la mano libre, mientras la pierna del mismo lado se eleva hacia su hombro. Un puente de cadera combinado con la patada de la pierna completa el barrido. Especialistas: Romulo Barral, Lucas Lepri .',
+        category: 'sweep'
+    },
+    {
+        id: 'sweep-elevator',
+        name: 'Elevator Sweep',
+        type: 'sweep',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Barrida ascensor o "butterfly sweep from closed guard". Cuando el oponente apoya la cabeza en el pecho, se abren las piernas y se colocan los pies como hooks de mariposa por dentro de los muslos, elevando al rival con un movimiento ascendente. También se le conoce como "reverse grapevine sweep" .',
+        category: 'sweep'
+    },
+    {
+        id: 'sweep-kiss-dragon',
+        name: 'Kiss of the Dragon Sweep',
+        type: 'sweep',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Barrido "Beso del Dragón". Una inversión moderna desde guardia cerrada que se utiliza cuando el oponente se pone de pie. Se engancha la pierna trasera del rival mientras se controla su brazo, girando hacia atrás para derribarlo. Especialistas: David Morcegão, los hermanos Miyao.',
+        category: 'sweep'
+    },
+
+        {
+        id: 'sweep-tripod',
+        name: 'Tripod Sweep',
+        type: 'sweep',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Barrido trípode. Desde guardia abierta con el oponente de pie, se agarra su tobillo con una mano y se engancha la rodilla contraria con el pie, mientras el otro pie presiona la cadera. Al levantar el tobillo agarrado y empujar la cadera, se convierte su pierna en una palanca para derribarlo .',
+        category: 'sweep'
+    },
+    {
+        id: 'sweep-spider-bicep',
+        name: 'Spider Guard Bicep Sweep',
+        type: 'sweep',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Barrido desde guardia araña con pies en bíceps. Posicionándose debajo del oponente (similar a X-guard) y retrayendo los pies, se desequilibra al rival hacia adelante, convirtiendo su cuerpo en una palanca. Es muy efectivo cuando el oponente presiona hacia adelante .',
+        category: 'sweep'
+    },
+    {
+        id: 'sweep-de-la-riva',
+        name: 'De La Riva Sweep',
+        type: 'sweep',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Barrido clásico desde guardia De La Riva. Con el gancho por detrás de la pierna delantera del oponente y la otra pierna en su cadera, se tira del tobillo enganchado mientras se empuja la cadera, derribando al rival hacia atrás. Especialistas: Ricardo De La Riva, Rafa Mendes.',
+        category: 'sweep'
+    },
+    {
+        id: 'sweep-berimbolo',
+        name: 'Berimbolo Sweep',
+        type: 'sweep',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Barrido berimbolo. Desde guardia De La Riva invertida, se gira al oponente sobre su propio eje mientras se "trepa" por su espalda, terminando directamente en posición de control trasero o raspando al rival. Revolucionó el BJJ moderno. Especialistas: Los hermanos Mendes, los hermanos Miyao.',
+        category: 'sweep'
+    },
+    {
+        id: 'sweep-waiter',
+        name: 'Waiter Sweep',
+        type: 'sweep',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Barrido camarero. Desde guardia cerrada cuando el oponente se pone de pie, se controla su muñeca y se "nada" el brazo libre por dentro de su pierna más cercana, atrapando el talón. Al empujar la cadera hacia adentro y tirar del talón hacia el hombro, se derriba al rival .',
+        category: 'sweep'
+    },
+
+        {
+        id: 'sweep-single-leg-x',
+        name: 'Single Leg X Sweep',
+        type: 'sweep',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Barrido desde Single Leg X (SLX). Actuando como un gato hidráulico, se levanta al oponente elevando la pierna enganchada mientras se usa el tríceps para "cortar" su pie de apoyo. El principio clave es convertir su pierna de "marco" (en el suelo) a "palanca" (levantada) .',
+        category: 'sweep'
+    },
+    {
+        id: 'sweep-x-guard',
+        name: 'X Guard Sweep',
+        type: 'sweep',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Barrido desde X-Guard. Con ambas piernas enredadas en configuración de X controlando la pierna lejana del oponente, se levanta una de sus piernas del suelo para crear una palanca y se derriba al rival hacia un lado. Muy efectivo para derribar oponentes más grandes. Especialistas: Marcelo Garcia, Rafa Mendes .',
+        category: 'sweep'
+    },
+    {
+        id: 'sweep-x-guard-standup',
+        name: 'X Guard Technical Standup Sweep',
+        type: 'sweep',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Barrido con levantamiento técnico desde X-Guard. Desde X-Guard, se empuja al oponente para que una de sus piernas se eleve, y usando el impulso, se realiza un levantamiento técnico para terminar de pie o en una posición dominante. Combina conceptos de barrido y wrestling .',
+        category: 'sweep'
+    },
+    {
+        id: 'sweep-5050',
+        name: '50/50 Guard Sweep',
+        type: 'sweep',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Barrido desde guardia 50/50. Desde esta posición simétrica de piernas, se utilizan palancas y desequilibrios para derribar al oponente hacia un lado. Requiere un buen conocimiento del sistema de leg locks para ser efectivo sin exponerse a contraataques.',
+        category: 'sweep'
+    },
+
+        {
+        id: 'sweep-half-basic',
+        name: 'Basic Half Guard Sweep',
+        type: 'sweep',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Barrido básico desde media guardia. Con un underhook profundo en la cadera del oponente, se usa el gancho de pierna para levantar su pierna atrapada del suelo, convirtiéndola en palanca para derribarlo hacia el lado del underhook .',
+        category: 'sweep'
+    },
+    {
+        id: 'sweep-half-reverse',
+        name: 'Reverse Half Guard Sweep',
+        type: 'sweep',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Barrido inverso desde media guardia. Cuando el oponente bloquea su pierna en el suelo, se cae hacia el lado contrario y se busca levantar su otra pierna, usándola como palanca para completar el barrido .',
+        category: 'sweep'
+    },
+    {
+        id: 'sweep-half-lockdown',
+        name: 'Lockdown Sweep / Electric Chair',
+        type: 'sweep',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Barrido desde lockdown (media guardia con enredo). Popularizado por Eddie Bravo y el sistema 10th Planet. Usando el enredo de piernas "lockdown" y el "whip up", se genera una palanca que permite barrer al oponente hacia el lado contrario. Especialistas: Eddie Bravo, Geo Martinez.',
+        category: 'sweep'
+    },
+    {
+        id: 'sweep-old-school',
+        name: 'Old School Sweep',
+        type: 'sweep',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Barrido "old school" desde deep half guard. Desde media guardia profunda, con la cabeza apoyada en el muslo lejano del oponente, se agarra su tobillo lejano y se rueda hacia atrás, llevándolo consigo. Muy efectivo para barrer sin mucho esfuerzo. Especialistas: Bernardo Faria, Jeff Glover.',
+        category: 'sweep'
+    },
+
+        {
+        id: 'sweep-butterfly-basic',
+        name: 'Butterfly Sweep',
+        type: 'sweep',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Barrido mariposa básico. Con ambos ganchos de mariposa por dentro de los muslos del oponente, cuando éste empuja hacia adelante, se aprovecha su momentum para balancearse hacia atrás y elevarlo por encima, derribándolo. Especialistas: Marcelo Garcia (el mayor exponente) .',
+        category: 'sweep'
+    },
+    {
+        id: 'sweep-butterfly-one-leg',
+        name: 'Single Leg Butterfly Sweep',
+        type: 'sweep',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Barrido mariposa de una pierna. Si el oponente está estático, se enfoca en levantar una de sus rodillas por encima de la cadera usando un gancho de mariposa, desequilibrándolo hacia ese lado .',
+        category: 'sweep'
+    },
+    {
+        id: 'sweep-butterfly-hook',
+        name: 'Hook Sweep',
+        type: 'sweep',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'Barrido de gancho. Una versión simplificada del barrido mariposa. Usando un solo gancho por dentro del muslo y controlando el brazo del mismo lado, se engancha y se levanta la pierna del oponente para derribarlo. Muy común en los inicios del aprendizaje.',
+        category: 'sweep'
+    },
+
+        {
+        id: 'sweep-shin-to-shin',
+        name: 'Shin to Shin Sweep',
+        type: 'sweep',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Barrido desde shin to shin. Desde la posición de espinilla contra espinilla, cuando el oponente presiona, se usa el hook de mariposa de la pierna libre y se rueda hacia atrás para llevarlo a la X-guard o directamente barrerlo. Especialistas: Lachlan Giles, Craig Jones.',
+        category: 'sweep'
+    },
+    {
+        id: 'sweep-crab-ride',
+        name: 'Crab Ride Sweep',
+        type: 'sweep',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Barrido desde crab ride. Desde guardia abierta, se "trepa" por la espalda del oponente usando hooks en sus muslos, desequilibrándolo hacia adelante para terminar en control de espalda. Es una de las evoluciones más modernas del juego de guardia.',
+        category: 'sweep'
+    },
+    {
+        id: 'sweep-worm',
+        name: 'Worm Guard Sweep',
+        type: 'sweep',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Barrido desde worm guard. Usando la solapa envuelta alrededor de la espinilla como punto de control, se genera un desequilibrio asimétrico que permite barrer al oponente hacia el lado del gusano o hacia el lado contrario. Especialistas: Keenan Cornelius.',
+        category: 'sweep'
+    },
+    {
+        id: 'sweep-lasso',
+        name: 'Lasso Guard Sweep',
+        type: 'sweep',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Barrido desde guardia lazo. Con un pie enganchado en la manga (lazo) y el otro pie en la cadera opuesta, se tira del lazo mientras se empuja con el pie de cadera, derribando al oponente hacia el lado del lazo.',
+        category: 'sweep'
+    },
+
+    // ========================== POSICIONES ==========================
+    {
+        id: 'position-back-control',
+        name: 'Back Control',
+        type: 'position',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Control de espalda, la posición más dominante en BJJ. También conocida como "Back Mount" o "Espalda". Se caracteriza por tener ambos ganchos (pies por dentro de los muslos) y controlar el cuello del oponente. Desde aquí se pueden aplicar estrangulaciones como el Mataleón (RNC) o el Arco y Flecha. Especialistas: Marcelo Garcia, Roger Gracie, Gordon Ryan.',
+        category: 'position'
+    },
+    {
+        id: 'position-back-body-triangle',
+        name: 'Back Control with Body Triangle',
+        type: 'position',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Control de espalda con triángulo abdominal o "Body Triangle". Variante donde se cruzan las piernas alrededor del torso del oponente en lugar de usar ganchos. Ofrece un control increíble y libera las manos para atacar. Popularizada en MMA y No-Gi. Especialistas: Jon Jones, Gordon Ryan.',
+        category: 'position'
+    },
+    {
+        id: 'position-crucifix',
+        name: 'Crucifix Position',
+        type: 'position',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Posición de crucifijo. Una posición de control asimétrico donde se atrapa un brazo del oponente entre las piernas mientras se controla el otro, inmovilizándolo en forma de cruz. Permite ataques únicos como estrangulaciones y llaves de brazo. Especialistas: Marcelo Garcia, Kron Gracie.',
+        category: 'position'
+    },
+
+    {
+        id: 'position-mount',
+        name: 'Mount',
+        type: 'position',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'Montada o "Full Mount". Posición dominante sentado sobre el torso del oponente, con las rodillas en el suelo y el peso sobre el rival. Ofrece control total y oportunidades para estrangulaciones (Ezequiel, Cross Collar) y llaves de brazo (Americana, Armbar). Especialistas: Roger Gracie, Demian Maia.',
+        category: 'position'
+    },
+    {
+        id: 'position-s-mount',
+        name: 'S-Mount',
+        type: 'position',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Montada en S o "S-Mount". Variante avanzada de la montada donde una rodilla se eleva y el pie se coloca cerca de la cadera del oponente, creando una posición más alta y con más ángulos para ataques como el Armbar o el Triángulo de brazo. Especialistas: Roger Gracie, Braulio Estima.',
+        category: 'position'
+    },
+    {
+        id: 'position-high-mount',
+        name: 'High Mount',
+        type: 'position',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Montada alta. Similar a la S-Mount pero con ambas rodillas elevadas cerca de las axilas del oponente. Ofrece gran movilidad y opciones de ataque, especialmente para estrangulaciones.',
+        category: 'position'
+    },
+    {
+        id: 'position-low-mount',
+        name: 'Low Mount',
+        type: 'position',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'Montada baja o "Grapevine Mount". Posición donde las piernas se enredan con las del oponente para inmovilizarlo. Ofrece mucho control pero menos movilidad para atacar. Útil para cansar al rival y evitar escapes.',
+        category: 'position'
+    },
+    {
+        id: 'position-technical-mount',
+        name: 'Technical Mount',
+        type: 'position',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Montada técnica. Posición de transición donde se controla un brazo del oponente mientras se mantiene la presión desde arriba. Es una antesala al control de espalda o a sumisiones como el Armbar. Especialistas: André Galvão, Lucas Lepri.',
+        category: 'position'
+    },
+
+    {
+        id: 'position-side-control',
+        name: 'Side Control',
+        type: 'position',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'Control lateral, también conocido como "100 Kilos" o "Cien Kilos". Posición donde se controla al oponente desde el costado, con el pecho contra su pecho y las caderas bajas. Es la posición más estable del Jiu Jitsu y permite transiciones a montada o espalda, así como ataques de kimura y americana. Especialistas: Rodolfo Vieira, Bernardo Faria.',
+        category: 'position'
+    },
+    {
+        id: 'position-side-control-100-kilos-1',
+        name: '100 Kilos 1 / Classic Side Control',
+        type: 'position',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'Control lateral clásico o "100 Kilos 1". Posición básica con el pecho sobre el pecho del oponente, una pierna extendida hacia atrás y la otra flexionada para mantener la base. Ofrece gran presión y control .',
+        category: 'position'
+    },
+    {
+        id: 'position-kesa-gatame',
+        name: 'Kesa Gatame / 100 Kilos 2',
+        type: 'position',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Control lateral estilo bufanda, conocido en judo como Kesa Gatame y en BJJ como "100 Kilos 2" o control mirando hacia la cabeza. Se controla la cabeza y un brazo del oponente, creando una posición muy estable pero que expone la espalda si no se ejecuta correctamente. Ofrece ataques como la kimura y el americana .',
+        category: 'position'
+    },
+    {
+        id: 'position-north-south',
+        name: 'North South / 100 Kilos 5',
+        type: 'position',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Posición Norte-Sur o "100 Kilos 5". Control donde el practicante se sitúa sobre la cabeza del oponente, mirando hacia sus pies. Ofrece oportunidades únicas para estrangulaciones (North South Choke) y transiciones a la espalda. Especialistas: Jeff Monson, Marcelo Garcia .',
+        category: 'position'
+    },
+    {
+        id: 'position-reverse-kesa',
+        name: 'Reverse Kesa Gatame / 100 Kilos 4',
+        type: 'position',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Control lateral invertido o "100 Kilos 4" (Ushiro Kesa Gatame). El practicante controla al oponente desde el costado pero mirando hacia sus piernas. Es una posición de transición útil para pasar a montada o para defender intentos de escape .',
+        category: 'position'
+    },
+    {
+        id: 'position-kuzure-kesa',
+        name: 'Kuzure Kesa Gatame / 100 Kilos 3',
+        type: 'position',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Control lateral modificado o "100 Kilos 3". Variante del Kesa Gatame con agarres y controles diferentes, ofreciendo opciones de ataque y defensa alternativas .',
+        category: 'position'
+    },
+    {
+        id: 'position-twister-side',
+        name: 'Twister Side Control',
+        type: 'position',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Control lateral estilo twister. Posición popularizada por el sistema 10th Planet donde se controla al oponente con un brazo atrapado y la cabeza controlada, preparando ataques como el Twister o transiciones a la espalda. Especialistas: Eddie Bravo, Geo Martinez.',
+        category: 'position'
+    },
+
+    {
+        id: 'position-knee-on-belly',
+        name: 'Knee on Belly',
+        type: 'position',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Rodilla en pecho, también conocida como "Knee Ride", "Rodilla al pecho" o Uki Gatame. Posición donde una rodilla se clava en el abdomen o pecho del oponente mientras la otra pierna se extiende hacia atrás para mantener el equilibrio. Permite gran movilidad, presión y opciones de ataque como estrangulaciones y transiciones a montada o espalda. Especialistas: Leandro Lo, Lucas Lepri .',
+        category: 'position'
+    },
+    {
+        id: 'position-knee-on-belly-crossface',
+        name: 'Knee on Belly with Crossface',
+        type: 'position',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Rodilla en pecho con control de cabeza. Variante donde se utiliza el brazo para hacer "crossface" (presión en la mandíbula) mientras la rodilla mantiene la presión en el torso. Ofrece control adicional y prepara ataques como el baseball choke.',
+        category: 'position'
+    },
+    {
+        id: 'position-knee-on-belly-calf-crush',
+        name: 'Knee on Belly with Calf Crush',
+        type: 'position',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Rodilla en pecho con presión de pantorrilla. Variante donde se utiliza la pierna extendida para presionar la pantorrilla del oponente, limitando aún más sus opciones de escape.',
+        category: 'position'
+    },
+
+    {
+        id: 'position-turtle',
+        name: 'Turtle / All Fours',
+        type: 'position',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'Tortuga o "Cuatro Apoyos". Posición defensiva donde el practicante se coloca a cuatro patas protegiendo su espalda y cuello. Aunque es desfavorable, permite recuperar guardia o buscar reversals. Especialistas en sistema defensivo: Pritt Mikhelson .',
+        category: 'position'
+    },
+    {
+        id: 'position-half-guard-top',
+        name: 'Half Guard Top / Smash Pass Position',
+        type: 'position',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Media guardia desde arriba. Posición donde el practicante tiene una pierna atrapada pero mantiene el control superior. Es una posición de transición clave para pasar o avanzar a posiciones más dominantes. Especialistas: Bernardo Faria, Murilo Santana .',
+        category: 'position'
+    },
+    {
+        id: 'position-half-mount',
+        name: 'Half Mount',
+        type: 'position',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Media montada. Posición donde el practicante tiene una pierna sobre el oponente pero la otra aún está atrapada. Es una transición entre control lateral y montada que ofrece oportunidades para finalizaciones .',
+        category: 'position'
+    },
+
+    {
+        id: 'position-leg-drag',
+        name: 'Leg Drag Position',
+        type: 'position',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Posición de arrastre de pierna. No es una posición final, sino un control avanzado donde se aísla una pierna del oponente mientras se mantiene presión sobre su torso. Permite transiciones a la espalda o a montada. Especialistas: Rafa Mendes, JT Torres.',
+        category: 'position'
+    },
+    {
+        id: 'position-truck',
+        name: 'The Truck Position',
+        type: 'position',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Posición "The Truck". Desarrollada por el sistema 10th Planet, es un control lateral invertido que atrapa al oponente de lado con las piernas en configuración especial. Desde aquí se pueden aplicar sumisiones como el Twister o el Truck Roll. Especialistas: Eddie Bravo, Richie Martinez.',
+        category: 'position'
+    },
+    {
+        id: 'position-crab-ride',
+        name: 'Crab Ride',
+        type: 'position',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Posición "Crab Ride". Control avanzado donde el practicante se sitúa sobre la espalda del oponente con hooks en los muslos pero sin control total de espalda. Es una posición de transición muy moderna que permite barridos y tomas de espalda. Especialistas: Los hermanos Miyao, Mikey Musumeci.',
+        category: 'position'
+    },
+    {
+        id: 'position-5050-top',
+        name: '50/50 Top Position',
+        type: 'position',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Posición 50/50 desde arriba. En esta posición simétrica de piernas, el practicante que está arriba tiene ventaja posicional y puede atacar piernas o buscar desenredarse para avanzar a posiciones más dominantes. Especialistas: Ryan Hall, Gordon Ryan.',
+        category: 'position'
     },
 
     // ========================== ESCAPES ==========================
     {
-        id: 'elbow-escape',
-        name: 'Escape de Codo',
-        type: 'escape',
-        belt_level: 'white',
-        level: 'beginner',
-        description: 'Escape básico de montada usando el codo y la rodilla para crear espacio y recuperar guardia.',
-        category: 'escape'
-    },
-    {
-        id: 'upa-escape',
-        name: 'Escape Upa',
-        type: 'escape',
-        belt_level: 'white',
-        level: 'beginner',
-        description: 'Escape de montada usando bridge y rollo para desbalancear al oponente y revertir la posición.',
-        category: 'escape'
-    },
-    {
-        id: 'turtle-escape',
-        name: 'Escape desde Tortuga',
+        id: 'escape-back-hook-side',
+        name: 'Back Escape to the Hook Side',
         type: 'escape',
         belt_level: 'blue',
         level: 'intermediate',
-        description: 'Escape desde posición de tortuga recuperando guardia o barriendo al oponente. Requiere control de esgrimas y movimientos angulados.',
+        description: 'Escape de espalda hacia el lado del gancho inferior. Se utiliza cuando el brazo del oponente está por DEBAJO de la axila. Se controla el brazo que va a estrangular, se crea espacio y se gira hacia el lado del gancho para liberar la cadera, terminando generalmente en el fondo de la guardia o media guardia .',
         category: 'escape'
     },
     {
-        id: 'side-control-escape',
-        name: 'Escape de Control Lateral',
+        id: 'escape-back-overhook-side',
+        name: 'Back Escape to the Overhook Side',
+        type: 'escape',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Escape de espalda hacia el lado del overhook (gancho por encima). Se utiliza cuando el brazo del oponente pasa SOBRE el hombro. Es más difícil, pero se puede ejecutar controlando la mano que estrangula y buscando colocar la cabeza en el suelo para facilitar la rotación y liberación de la cadera .',
+        category: 'escape'
+    },
+    {
+        id: 'escape-back-knee-pull',
+        name: 'Knee Pull and Spin Out Escape',
+        type: 'escape',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Escape controlando la rodilla y girando dentro de la montura trasera. Se agarra la rodilla del oponente y se gira hacia adentro para evitar que siga, permitiendo escapar y terminar en una posición superior (arriba) con opciones de pase de guardia .',
+        category: 'escape'
+    },
+    {
+        id: 'escape-back-hips-first',
+        name: 'Hips First Escape',
+        type: 'escape',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Escape pensando primero en las caderas. La prioridad es liberar la cadera del gancho inferior antes de preocuparse por los hombros. Se controla el brazo que estrangula, se empuja el gancho superior con el brazo y se gira hacia el gancho inferior para pisarlo y liberarse, recuperando una posición neutral .',
+        category: 'escape'
+    },
+
+    {
+        id: 'escape-mount-elbow',
+        name: 'Elbow Escape / Upa',
         type: 'escape',
         belt_level: 'white',
         level: 'beginner',
-        description: 'Escape básico desde control lateral usando frames y hip escape para recuperar guardia o llegar a las rodillas.',
+        description: 'Escape de codo o "shrimp". El escape básico de montada. Consiste en crear un marco con el codo dentro del muslo del oponente, puentear para desequilibrarlo, girar sobre un costado (shrimp) e introducir la rodilla para recuperar la media guardia o guardia cerrada. Es el primer escape que todo practicante aprende .',
         category: 'escape'
     },
     {
-        id: 'back-escape',
-        name: 'Escape de Espalda',
+        id: 'escape-mount-trap-and-roll',
+        name: 'Trap and Roll / Bridge and Roll',
         type: 'escape',
-        belt_level: 'blue',
-        level: 'intermediate',
-        description: 'Escape desde montada trasera defendiendo estrangulaciones y trabajando para recobrar una posición neutral.',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'Trampa y ruedo o "puente y ruedo". Se atrapa un brazo del oponente y su pie del mismo lado, se puentea con fuerza hacia el lado atrapado para voltearlo y terminar en guardia o montada. Es muy efectivo cuando el oponente tiene una postura alta .',
         category: 'escape'
     },
     {
-        id: 'north-south-escape',
-        name: 'Escape de Norte-Sur',
+        id: 'escape-mount-knee-to-elbow',
+        name: 'Knee to Elbow Escape',
+        type: 'escape',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'Escape de rodilla a codo. Variante donde se usa un marco con el codo en el interior del muslo y se desliza la rodilla hacia el codo para crear espacio y liberar la pierna, recuperando media guardia .',
+        category: 'escape'
+    },
+    {
+        id: 'escape-mount-hip-bump',
+        name: 'Hip Bump to X Guard',
         type: 'escape',
         belt_level: 'blue',
         level: 'intermediate',
-        description: 'Escape desde posición norte-sur usando movimientos de hip escape y frames para recuperar guardia o llegar a las rodillas.',
+        description: 'Elevación de cadera a X-Guard. Cuando el oponente está montando, se puentea con fuerza para desequilibrarlo hacia adelante y se introducen los pies como ganchos para transicionar directamente a Single Leg X o X-Guard, una opción más moderna y dinámica .',
+        category: 'escape'
+    },
+    {
+        id: 'escape-mount-foot-drag',
+        name: 'Foot Drag Elbow Escape',
+        type: 'escape',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Escape de codo arrastrando el pie. Similar al escape de codo, pero se utiliza la mano para agarrar el pie del oponente y arrastrarlo mientras se hace el shrimp, facilitando la liberación de la pierna .',
+        category: 'escape'
+    },
+
+    {
+        id: 'escape-side-control-shrimp',
+        name: 'Side Control Shrimp Escape',
+        type: 'escape',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'Escape de camarón desde control lateral. Consiste en crear un marco con el brazo en la garganta o cadera del oponente, hacer un shrimp para girar sobre el costado e introducir la rodilla para recuperar la media guardia. La clave está en la posición de las caderas .',
+        category: 'escape'
+    },
+    {
+        id: 'escape-side-control-knee-elbow',
+        name: 'Knee to Elbow Escape',
+        type: 'escape',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'Escape de rodilla a codo. Similar al de montada, se coloca un marco, se gira y se busca conectar la rodilla con el codo para crear espacio y recuperar la guardia.',
+        category: 'escape'
+    },
+    {
+        id: 'escape-side-control-reversal',
+        name: 'Side Control Reversal',
+        type: 'escape',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Reversa desde control lateral. Cuando el oponente está muy pesado, se puede usar su propio impulso para voltearlo. Se atrapa su brazo lejano y se rueda hacia él, invirtiendo las posiciones para terminar arriba .',
+        category: 'escape'
+    },
+    {
+        id: 'escape-side-control-wrestle-up',
+        name: 'Wrestle Up / Technical Standup',
+        type: 'escape',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Levantamiento técnico desde control lateral. Cuando el oponente da espacio, se utiliza un levantamiento técnico para ponerse de pie y revertir la posición, terminando en una posición de wrestling o pase de guardia .',
+        category: 'escape'
+    },
+
+    {
+        id: 'escape-knee-on-belly-hip-escape',
+        name: 'Hip Escape to Single Leg',
+        type: 'escape',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Escape de cadera a single leg. El escape más efectivo desde rodilla en pecho. Se hace un movimiento de cadera (shrimp) hacia afuera mientras se atrapa la pierna delantera del oponente, transicionando a un single leg takedown o barrido .',
+        category: 'escape'
+    },
+    {
+        id: 'escape-knee-on-belly-push-knee',
+        name: 'Push the Knee Escape',
+        type: 'escape',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'Escape empujando la rodilla. Se utiliza la mano para empujar la rodilla del oponente mientras se gira sobre el otro lado, creando espacio para recuperar la guardia.',
+        category: 'escape'
+    },
+
+    {
+        id: 'escape-north-south-step-over',
+        name: 'North South Step Over Escape',
+        type: 'escape',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Escape de norte-sur pasando por encima. Se controla el brazo del oponente, se pasa una pierna por encima de su cabeza y se gira para terminar en guardia o media guardia. Requiere un enfoque paso a paso dependiendo de la posición de los brazos .',
+        category: 'escape'
+    },
+    {
+        id: 'escape-north-south-roll',
+        name: 'North South Roll',
+        type: 'escape',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Reversa rodando desde norte-sur. Cuando el oponente está muy adelantado, se puede agarrar su brazo y rodar hacia adelante para terminar en su espalda o en una posición dominante.',
+        category: 'escape'
+    },
+
+    {
+        id: 'escape-turtle-sitout',
+        name: 'Wrestling Sit Out',
+        type: 'escape',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Sentada o "sit out". Movimiento proveniente de la lucha olímpica. Desde la posición de tortuga, se gira el cuerpo sentándose hacia un lado mientras se controla la muñeca del oponente, terminando de cara a él o en una posición de single leg .',
+        category: 'escape'
+    },
+    {
+        id: 'escape-turtle-roll',
+        name: 'Turtle Roll / Granby Roll',
+        type: 'escape',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Rodamiento desde tortuga. Se utiliza el impulso del oponente para rodar hacia adelante o hacia un lado y recuperar la guardia o quedar arriba. Requiere buen timing .',
+        category: 'escape'
+    },
+
+    {
+        id: 'escape-kesa-bodylock-roll',
+        name: 'Kesa Gatame Body Lock and Roll',
+        type: 'escape',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Escape de Kesa Gatame con agarre de cintura y ruedo. Se envuelve la cintura del oponente, se gira sobre el hombro para invertir la posición y terminar en su guardia o montada .',
+        category: 'escape'
+    },
+    {
+        id: 'escape-kesa-duck-under',
+        name: 'Kesa Gatame Duck Under',
+        type: 'escape',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Escape de Kesa Gatame pasando por debajo. Cuando el oponente presiona, se pasa por debajo de su brazo para salir por detrás o recuperar la guardia. Puede derivar en un kimura o en control de espalda .',
         category: 'escape'
     },
 
     // ========================== DERRIBOS ==========================
     {
-        id: 'double-leg-takedown',
-        name: 'Derribo de Doble Pierna',
+        id: 'takedown-double-leg',
+        name: 'Double Leg Takedown',
         type: 'takedown',
         belt_level: 'white',
         level: 'beginner',
-        description: 'Derribo básico agarrándose de ambas piernas del oponente. Común en wrestling y BJJ, requiere penetración profunda.',
+        description: 'Derribo de doble pierna, conocido en Brasil como "Baiana" (en honor a Waldemar Santana, "el Baiano") y en judo como Morote Gari . Consiste en atacar ambas piernas del oponente llevándolo al suelo. En Gi, es importante controlar las mangas para evitar guillotinas; en No-Gi, el control de bíceps es clave. Se ejecuta cuando el oponente está erguido o con peso desplazado hacia atrás. La penetración debe ser profunda con la rodilla hasta el suelo. Especialistas: Ricardo Arona, Paulo Filho, Rickson Gracie .',
         category: 'takedown'
     },
     {
-        id: 'single-leg-takedown',
-        name: 'Derribo de Pierna Simple',
+        id: 'takedown-single-leg',
+        name: 'Single Leg Takedown',
         type: 'takedown',
         belt_level: 'white',
         level: 'beginner',
-        description: 'Derribo agarrándose de una pierna del oponente. Incluye variaciones como high crotch y low single.',
+        description: 'Derribo de una pierna. El derribo más común en BJJ . Se ataca una sola pierna del oponente mientras se controla el tren superior. En Gi, se puede usar la solapa o manga; en No-Gi, control de bíceps o cuello. Ideal cuando el oponente adelanta una pierna. La clave está en mantener la pierna atrapada pegada al pecho y no dejar que la libere. Especialistas: Georges St-Pierre, Gregory Nelson (tiene un sistema completo desde el underhook) .',
         category: 'takedown'
     },
     {
-        id: 'osoto-gari',
-        name: 'O Soto Gari',
-        type: 'takedown',
-        belt_level: 'blue',
-        level: 'intermediate',
-        description: 'Derribo de judo usando barrido de pierna exterior. Ideal para oponentes que cargan mucho peso hacia atrás.',
-        category: 'takedown'
-    },
-    {
-        id: 'uchi-mata',
-        name: 'Uchi Mata',
+        id: 'takedown-low-single',
+        name: 'Low Single Leg',
         type: 'takedown',
         belt_level: 'purple',
         level: 'advanced',
-        description: 'Derribo de judo que usa la pierna para barrer la pierna interior del oponente. Requiere control de la manga y la solapa.',
+        description: 'Derribo de pierna baja. Una variante más segura del single leg donde se ataca el tobillo en lugar del muslo. Muy utilizado en wrestling para evitar contraataques. Funciona bien en No-Gi contra oponentes con postura muy baja. El momento ideal es cuando el oponente desplaza el peso hacia un lado.',
         category: 'takedown'
     },
     {
-        id: 'tomoe-nage',
-        name: 'Tomoe Nage',
+        id: 'takedown-high-crotch',
+        name: 'High Crotch / Inside Trip',
         type: 'takedown',
         belt_level: 'blue',
         level: 'intermediate',
-        description: 'Derribo de sacrificio donde se cae hacia atrás para proyectar al oponente sobre la cabeza. Útil para BJJ por su transición a guardia.',
+        description: 'Derribo de "ingle alta". Similar al single leg pero con la mano que ataca penetrando profundamente entre las piernas. Permite transiciones a derribos de pierna o viajes por dentro. En Gi, se puede combinar con control de manga. Muy popular en wrestling moderno.',
         category: 'takedown'
     },
     {
-        id: 'ankle-pick',
+        id: 'takedown-firemans-carry',
+        name: 'Fireman\'s Carry / Kata Guruma',
+        type: 'takedown',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Derribo de bombero. En judo se conoce como Kata Guruma ("rueda de hombros"). Se introduce la cabeza bajo el brazo del oponente, se agarra su pierna y se le carga sobre los hombros para derribarlo. En Gi, el agarre de la manga es crucial para controlar el brazo. En No-Gi, se usa un control de tríceps. Especialistas: Yoshihiko Yoshimatsu (judo), muchos wrestlers.',
+        category: 'takedown'
+    },
+
+        {
+        id: 'takedown-ogoshi',
+        name: 'O-Goshi / Hip Throw',
+        type: 'takedown',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Gran cadera. El lanzamiento de cadera fundamental en judo. En Gi, se agarra la solapa y la manga para proyectar al oponente sobre la cadera. En No-Gi, se requiere un control de cintura o de cabeza/brazo. Funciona mejor cuando el oponente está erguido y con la postura rota. La clave es introducir la cadera más allá de la del oponente. Especialistas: los judokas de la vieja escuela.',
+        category: 'takedown'
+    },
+    {
+        id: 'takedown-harai-goshi',
+        name: 'Harai Goshi / Sweeping Hip Throw',
+        type: 'takedown',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Cadera barredora. Similar a O-Goshi pero con un barrido de la pierna del oponente. En judo, es uno de los lanzamientos más estéticos. En BJJ, requiere buen control del brazo para que el oponente no tome la espalda. Funciona cuando el oponente está desequilibrado hacia adelante y lateralmente. Especialistas: muchos judokas olímpicos .',
+        category: 'takedown'
+    },
+    {
+        id: 'takedown-ippon-seoi-nage',
+        name: 'Ippon Seoi Nage / One Arm Shoulder Throw',
+        type: 'takedown',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Proyección de hombro de un brazo. En BJJ hay que usarlo con cuidado porque se puede exponer la espalda . El brazo del oponente se controla y se proyecta sobre el hombro. En Gi, el agarre de la manga es fundamental. En No-Gi, es más arriesgado. Ideal contra oponentes más bajos o encorvados. Requiere una entrada muy profunda.',
+        category: 'takedown'
+    },
+    {
+        id: 'takedown-koshi-guruma',
+        name: 'Koshi Guruma / Head and Arm Throw',
+        type: 'takedown',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Rueda de cadera con cabeza y brazo. También conocido como "Head and Arm" en wrestling. Se controla la cabeza y el brazo del oponente mientras se gira la cadera para proyectarlo. Muy efectivo en No-Gi por el control directo de la cabeza. Funciona cuando el oponente empuja hacia adelante. Especialistas: muchos luchadores de MMA.',
+        category: 'takedown'
+    },
+
+        {
+        id: 'takedown-uchi-mata',
+        name: 'Uchi Mata / Inner Thigh Reap',
+        type: 'takedown',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Segadora de muslo interno. Considerado uno de los lanzamientos más espectaculares del judo . Puede ejecutarse como técnica de cadera o de pierna. En BJJ, es muy útil porque si falla, se puede terminar en media guardia . Funciona cuando el oponente está erguido y con el peso hacia adelante. En Gi, se usa la solapa y manga; en No-Gi, control de cuello y manga. Especialistas: Hifumi Abe (judo), muchos judokas de alto nivel.',
+        category: 'takedown'
+    },
+    {
+        id: 'takedown-osoto-gari',
+        name: 'Osoto Gari / Major Outer Reap',
+        type: 'takedown',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Gran segadora externa. Un derribo clásico donde se desequilibra al oponente hacia atrás y se siega su pierna de apoyo. En BJJ, es más efectivo como contraataque que como ataque principal . Requiere un fuerte desequilibrio hacia atrás. En Gi, se tira de la solapa mientras se empuja con la manga. En No-Gi, control de nuca y tríceps.',
+        category: 'takedown'
+    },
+    {
+        id: 'takedown-ouchi-gari',
+        name: 'Ouchi Gari / Major Inner Reap',
+        type: 'takedown',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Gran segadora interna. Muy efectivo contra oponentes con postura defensiva que mantienen las caderas atrás . Se desequilibra al oponente hacia atrás y se siega su pierna por dentro. Excelente para encadenar con otros derribos como Uchi Mata o Ko Uchi Gari. Especialistas: Jimmy Pedro (demostró combinaciones clásicas) .',
+        category: 'takedown'
+    },
+    {
+        id: 'takedown-kouchi-gari',
+        name: 'Ko Uchi Gari / Minor Inner Reap',
+        type: 'takedown',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Pequeña segadora interna. Un barrido de pie que ataca el talón del oponente por dentro. Funciona cuando el oponente tiene el peso sobre un pie . Es de bajo riesgo y prepara otros ataques. Jimmy Pedro muestra una versión clásica donde se combina con tirones de manga .',
+        category: 'takedown'
+    },
+
+        {
+        id: 'takedown-de-ashi-harai',
+        name: 'De Ashi Harai / Forward Foot Sweep',
+        type: 'takedown',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Barrido de pie adelantado. El barrido más básico y versátil . Se barre el pie del oponente en el momento en que da un paso, justo cuando está despegando del suelo o apoyando. En Gi, se usa para crear reacciones con los tirones de manga. En No-GI, se puede usar en combinación con snaps de cabeza. Dan Camarillo lo usó para ganar un torneo de BJJ en 1998, barriendo ambos pies del oponente con un tirón de solapa . Especialistas: Roger Gracie, Dan Camarillo.',
+        category: 'takedown'
+    },
+    {
+        id: 'takedown-sasae-tsurikomi-ashi',
+        name: 'Sasae Tsurikomi Ashi / Propping Ankle Sweep',
+        type: 'takedown',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Barrido de tobillo con bloqueo. Se coloca el pie bloqueando la pierna del oponente mientras se tira hacia adelante, provocando que tropiece. Funciona cuando el oponente avanza con peso desplazado. Es una técnica de engaño muy efectiva.',
+        category: 'takedown'
+    },
+    {
+        id: 'takedown-hiza-guruma',
+        name: 'Hiza Guruma / Knee Wheel',
+        type: 'takedown',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Rueda de rodilla. Similar a Sasae pero el pie bloquea la rodilla en lugar del tobillo. Muy efectivo contra oponentes altos. Funciona bien en BJJ por la postura encorvada típica .',
+        category: 'takedown'
+    },
+    {
+        id: 'takedown-safada',
+        name: 'Safada Takedown',
+        type: 'takedown',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Derribo "safada" popularizado por Fernando Terere. Una variante de barrido de pie adaptada a la postura baja del BJJ . Terere lo usó contra Roger Gracie en su famoso combate: un tirón violento hacia adelante combinado con un empuje en la cadera y un barrido de pie interno . Es una adaptación perfecta del judo al BJJ moderno.',
+        category: 'takedown'
+    },
+
+        {
+        id: 'takedown-tomoe-nage',
+        name: 'Tomoe Nage / Circle Throw',
+        type: 'takedown',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Proyección circular o "estrella". El clásico derribo de sacrificio donde se coloca el pie en el abdomen del oponente y se rueda hacia atrás para proyectarlo por encima. En BJJ, es muy seguro porque se termina en guardia . Justin Flores tiene un sistema completo de "derribos de sacrificio seguros" donde muestra variantes desde la guardia mariposa o de pie . Especialistas: Justin Flores.',
+        category: 'takedown'
+    },
+    {
+        id: 'takedown-yoko-tomoe-nage',
+        name: 'Yoko Tomoe Nage / Side Circle Throw',
+        type: 'takedown',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Proyección circular lateral. Una variante lateral del Tomoe Nage. Justin Flores lo enseña desde diferentes posiciones: guardia mariposa, de rodillas, en cuclillas y de pie . Tiene transiciones directas a armbar . Muy efectivo para sorprender al oponente.',
+        category: 'takedown'
+    },
+    {
+        id: 'takedown-sumi-gaeshi',
+        name: 'Sumi Gaeshi / Corner Throw',
+        type: 'takedown',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Proyección de esquina. Similar al Tomoe Nage pero con el pie en el muslo interno en lugar del abdomen. Justin Flores muestra aplicaciones desde de pie, contra single leg, y variantes como Obi Tori Gaeshi . Especialmente útil cuando el oponente está encorvado.',
+        category: 'takedown'
+    },
+    {
+        id: 'takedown-tani-otoshi',
+        name: 'Tani Otoshi / Valley Drop',
+        type: 'takedown',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Caída en valle. Un derribo de sacrificio lateral que no expone la espalda . Se ejecuta cuando el oponente está desequilibrado hacia atrás y se "deja caer" junto a él. Muy utilizado en BJJ por su seguridad y efectividad.',
+        category: 'takedown'
+    },
+
+        {
+        id: 'takedown-arm-drag',
+        name: 'Arm Drag Takedown',
+        type: 'takedown',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Derribo por arrastre de brazo. Técnica fundamental de wrestling que también funciona en BJJ. Se arrastra el brazo del oponente a través del cuerpo para exponer su espalda y atacar la pierna. En Gi, se puede usar la manga; en No-Gi, control de muñeca. Muy efectivo para encadenar con single leg o double leg.',
+        category: 'takedown'
+    },
+    {
+        id: 'takedown-ankle-pick',
         name: 'Ankle Pick',
         type: 'takedown',
         belt_level: 'blue',
         level: 'intermediate',
-        description: 'Derribo que agarra el tobillo del oponente para desbalancearlo. Often combinado con fintas o guard pulls.',
+        description: 'Gancho de tobillo. Se controla la cabeza o el brazo del oponente y se agarra su tobillo para levantarlo y derribarlo. Funciona contra oponentes muy encorvados. Gregory Nelson lo enseña como parte de su sistema de underhook en gi .',
         category: 'takedown'
     },
     {
-        id: 'lapel-drag-takedown',
-        name: 'Lapel Drag',
+        id: 'takedown-snap-down',
+        name: 'Snap Down',
         type: 'takedown',
-        belt_level: 'purple',
-        level: 'advanced',
-        description: 'Derribo usando el gi para arrastrar al oponente hacia un lado y derribarlo. También usado desde guardia sentada.',
+        billing_level: 'white',
+        level: 'beginner',
+        description: 'Jalón de cabeza. No es un derribo completo sino un desequilibrio que lleva al oponente a cuatro apoyos. Desde ahí se puede atacar la espalda o hacer un pase de tortuga. Funciona cuando el oponente empuja hacia adelante. Muy común en wrestling y BJJ.',
         category: 'takedown'
     },
     {
-        id: 'arm-drag-to-takedown',
-        name: 'Arm Drag con Derribo',
+        id: 'takedown-knee-tap',
+        name: 'Knee Tap',
         type: 'takedown',
         belt_level: 'blue',
         level: 'intermediate',
-        description: 'Combinación de arm drag para desbalancear al oponente y seguido con un derribo como inside trip o single leg.',
+        description: 'Toque de rodilla. Se controla la cabeza o el brazo del oponente y se "toquea" su rodilla hacia afuera mientras se tira de la pierna contraria. Rápido y efectivo contra oponentes con base estrecha. Gregory Nelson lo enseña en su sistema .',
         category: 'takedown'
     },
-    {
-        id: 'foot-sweep',
-        name: 'Barrido de Pie',
+
+        {
+        id: 'takedown-sambo-body-lock',
+        name: 'Sambo Body Lock Takedown',
         type: 'takedown',
         belt_level: 'purple',
         level: 'advanced',
-        description: 'Derribo sutil que barre el pie del oponente en movimiento. Requiere timing preciso y control de grips.',
+        description: 'Derribo con agarre de cuerpo. Característico de Sambo y lucha grecorromana (donde no se atacan piernas) . Se agarra el cuerpo del oponente por detrás o por delante y se le levanta o derriba. En grecorromana, es la forma principal de derribo. Requiere gran fuerza de core.',
+        category: 'takedown'
+    },
+    {
+        id: 'takedown-greco-roman-suple',
+        name: 'Greco-Roman Suplex',
+        type: 'takedown',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Suplex grecorromano. Un derribo de alta amplitud donde se levanta al oponente y se arquea hacia atrás para que caiga de espaldas. La lucha grecorromana se especializa en este tipo de derribos sin atacar piernas . En BJJ es raro por el riesgo, pero efectivo si se domina.',
         category: 'takedown'
     },
 
     // ========================== DEFENSAS ==========================
+{
+        id: 'defense-guillotine-roger',
+        name: 'Guillotine Defense (Roger Gracie)',
+        type: 'defense',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Defensa de guillotina enseñada por Roger Gracie. La clave es colocar la mano en la muñeca del oponente para aliviar la presión inicial. Luego, se proyecta el peso hacia adelante sobre los hombros para incomodar al agresor y se avanza hacia un costado, creando palanca para liberar el cuello. Especialista: Roger Gracie .',
+        category: 'defense'
+    },
     {
-        id: 'armbar-defense',
-        name: 'Defensa de Armbar',
+        id: 'defense-guillotine-stack',
+        name: 'Guillotine Stack Defense',
+        type: 'defense',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Defensa de guillotina apilando al oponente. Cuando te atrapan en guillotina de pie o de rodillas, se levanta al oponente y se apila su peso sobre sus hombros, lo que afloja la estrangulación y permite liberar la cabeza. Se termina pasando la guardia o en posición lateral.',
+        category: 'defense'
+    },
+    {
+        id: 'defense-frontal-collar',
+        name: 'Frontal Collar Choke Defense',
         type: 'defense',
         belt_level: 'white',
         level: 'beginner',
-        description: 'Defensa básica contra llave de brazo. Involucra mantener las manos juntas y escapar la cadera.',
+        description: 'Defensa contra estrangulación frontal de solapas. Consiste en mantener la barbilla pegada al pecho para evitar que las solapas corten la arteria, mientras se agarran las manos del oponente para romper su agarre. Una vez roto, se gira la cadera para salir del peligro.',
         category: 'defense'
     },
     {
-        id: 'choke-defense',
-        name: 'Defensa de Estrangulaciones',
+        id: 'defense-baseball-choke',
+        name: 'Baseball Choke Defense',
         type: 'defense',
         belt_level: 'blue',
         level: 'intermediate',
-        description: 'Defensa contra estrangulaciones por frente y por atrás. Incluye postura adecuada y control de las manos del oponente.',
+        description: 'Defensa contra baseball choke desde knee on belly o montada. La clave es identificar el agarre cruzado temprano y "esconder" la mano atacada llevándola hacia la axila contraria, rompiendo el ángulo de la estrangulación. Luego, se gira hacia el lado del brazo atrapado para liberarlo.',
+        category: 'defense'
+    },
+
+        {
+        id: 'defense-rnc-hand-fight',
+        name: 'RNC Hand Fighting Defense',
+        type: 'defense',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Defensa primaria contra Rear Naked Choke. Consiste en luchar constantemente contra la mano que intenta estrangular, manteniendo la barbilla hacia abajo y usando ambas manos para impedir que el brazo del oponente cruce por debajo de la mandíbula. La clave es nunca dejar que el oponente asegure el agarre profundo.',
         category: 'defense'
     },
     {
-        id: 'takedown-defense',
-        name: 'Defensa de Derribos',
+        id: 'defense-rnc-shrug',
+        name: 'RNC Shrug Defense',
+        type: 'defense',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Defensa de encogimiento de hombros. Cuando el brazo del oponente ya está cerca del cuello, se encoge el hombro del mismo lado para proteger la arteria y se crea espacio para introducir la mano y romper el agarre. Requiere buena conciencia corporal y timing.',
+        category: 'defense'
+    },
+    {
+        id: 'defense-bow-arrow',
+        name: 'Bow and Arrow Choke Defense',
+        type: 'defense',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Defensa contra arco y flecha desde la espalda. La prioridad es liberar la pierna que el oponente ha atrapado (el "arco"). Se gira hacia la dirección de la estrangulación y se usa la mano libre para desenganchar la pierna de la solapa, recuperando una posición de espalda neutral.',
+        category: 'defense'
+    },
+
+        {
+        id: 'defense-triangle-posture',
+        name: 'Triangle Posture Defense',
+        type: 'defense',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Defensa de triángulo manteniendo la postura. La clave es nunca dejar que el oponente rompa la postura. Se mantiene la espalda recta, se levanta al oponente del suelo y se apila su peso sobre sus hombros para aflojar el triángulo .',
+        category: 'defense'
+    },
+    {
+        id: 'defense-triangle-stack',
+        name: 'Triangle Stack Defense',
+        type: 'defense',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Defensa de triángulo apilando. Similar a la defensa de guillotina, se levanta al oponente y se apila verticalmente, transfiriendo su peso a los hombros. Esto afloja la presión de las piernas y permite liberar la cabeza y el brazo.',
+        category: 'defense'
+    },
+    {
+        id: 'defense-triangle-twist',
+        name: 'Triangle Twist Escape',
+        type: 'defense',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Escape de triángulo con torsión. Cuando el triángulo ya está cerrado, se coloca la palma de la mano atrapada en el muslo del oponente y el codo en su vientre. Se tuerce el cuerpo para clavar su rodilla al suelo y se extiende la columna hacia arriba para salir .',
+        category: 'defense'
+    },
+
+        {
+        id: 'defense-kimura-grip',
+        name: 'Kimura Defense (Grip on Lapel)',
+        type: 'defense',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Defensa de kimura agarrando la propia solapa, enseñada por Jean Feijó. Con el brazo que está siendo atacado, se agarra la propia solapa del kimono para crear un marco y aliviar la presión. Simultáneamente, se mueve la cadera para reposicionarse y escapar del ángulo de ataque .',
+        category: 'defense'
+    },
+    {
+        id: 'defense-kimura-roll',
+        name: 'Kimura Defense / Reversal Roll',
+        type: 'defense',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Defensa de kimura que revierte la posición. Cuando el oponente asegura el agarre de kimura, se sigue la dirección de la llave y se rueda hacia adelante sobre el hombro, usando su propio impulso para terminar en una posición dominante (montada o control lateral).',
+        category: 'defense'
+    },
+    {
+        id: 'defense-americana-headblock',
+        name: 'Americana Defense (Head Block)',
+        type: 'defense',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Defensa de americana bloqueando con la cabeza. Se bloquea el brazo del rival con la propia cabeza para limitar su rango de movimiento y evitar la hiperextensión del hombro. Al mismo tiempo, se usa el otro brazo activamente para desequilibrar al oponente y evitar que se estabilice .',
+        category: 'defense'
+    },
+    {
+        id: 'defense-americana-two-hands',
+        name: 'Americana Two-Hands Defense',
         type: 'defense',
         belt_level: 'white',
         level: 'beginner',
-        description: 'Defensa contra derribos comunes como double leg o single leg. Involucra esparcir la base y controlar los grips.',
+        description: 'Defensa de americana usando ambos brazos. El principio clave es nunca dejar el brazo aislado. Desde el inicio del ataque, se usa activamente el otro brazo para defender, incomodar o desestabilizar al rival, impidiendo que consolide la posición .',
         category: 'defense'
     },
-    {
-        id: 'guard-pass-defense',
-        name: 'Defensa de Pase de Guardia',
+
+        {
+        id: 'defense-omoplata-roll',
+        name: 'Omoplata Defense / Forward Roll',
         type: 'defense',
         belt_level: 'blue',
         level: 'intermediate',
-        description: 'Defensa para prevenir que el oponente pase la guardia. Usa frames, hip movement y recomposición de guardia.',
+        description: 'Defensa de omoplata rodando hacia adelante. Cuando el oponente asegura la omoplata, se sigue la dirección de la llave y se rueda hacia adelante (como un mortal) para liberar el hombro y terminar en una posición neutral o incluso superior. Especialista: Bernardo Faria es conocido por tener defensas sólidas y reversals desde posiciones comprometidas .',
         category: 'defense'
     },
     {
-        id: 'back-defense',
-        name: 'Defensa de Espalda',
+        id: 'defense-omoplata-stack',
+        name: 'Omoplata Stack Defense',
+        type: 'defense',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Defensa de omoplata apilando. Similar a la defensa de triángulo, se levanta al oponente y se apila verticalmente para liberar el hombro de la presión de las piernas. Requiere buena base y fuerza de core.',
+        category: 'defense'
+    },
+
+        {
+        id: 'defense-armbar-hitchhiker',
+        name: 'Armbar Hitchhiker Escape',
         type: 'defense',
         belt_level: 'blue',
         level: 'intermediate',
-        description: 'Defensa desde montada trasera para escapar o prevenir estrangulaciones. Incluye control de manos y escape de hooks.',
+        description: 'Escape autoestopista desde armbar. Cuando el brazo está extendido pero no completamente bloqueado, se gira el cuerpo usando el brazo como punto de pivote, llevando los pies en la misma dirección que el oponente, hasta quedar boca abajo y finalmente arriba. Requiere timing perfecto.',
         category: 'defense'
-    }
+    },
+    {
+        id: 'defense-armbar-stack',
+        name: 'Armbar Stack Defense',
+        type: 'defense',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Defensa de armbar apilando. Cuando el oponente intenta un armbar desde guardia, se apila todo el peso sobre él para aplastarlo y liberar el brazo, pasando su guardia o quedando en posición dominante.',
+        category: 'defense'
+    },
+    {
+        id: 'defense-armbar-clasped-hands',
+        name: 'Armbar Defense (Clasped Hands)',
+        type: 'defense',
+        belt_level: 'white',
+        level: 'beginner',
+        description: 'Defensa básica de armbar manteniendo las manos juntas. Antes de que el oponente extienda completamente el brazo, se mantienen ambas manos firmemente agarradas para prevenir la hiperextensión. Luego, se escapa la cadera hacia afuera para aliviar la presión.',
+        category: 'defense'
+    },
+
+        {
+        id: 'defense-heel-hook-clearing',
+        name: 'Heel Hook Defense (Clearing the Foot)',
+        type: 'defense',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Defensa primaria contra heel hook. La prioridad absoluta es liberar el pie atrapado antes de que el oponente genere torsión. Se gira en la dirección del ataque (follow the roll) para aliviar la presión mientras se usa la mano para "limpiar" el pie de la axila del oponente.',
+        category: 'defense'
+    },
+    {
+        id: 'defense-heel-hook-figure-four',
+        name: 'Heel Hook Defense (Figure Four Counter)',
+        type: 'defense',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Defensa contra heel hook cuando el oponente tiene el honey hole. Si el oponente cruza las piernas en figura cuatro, se puede atacar la pierna exterior con un straight ankle lock o transicionar a una posición de "capoeira cowboy" para aplicar un toe hold en la pierna superior . Especialistas: Vinny Magalhaes, Chris Herzog .',
+        category: 'defense'
+    },
+    {
+        id: 'defense-kneebar-straight-leg',
+        name: 'Kneebar Defense (Keep Leg Bent)',
+        type: 'defense',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Defensa contra kneebar manteniendo la pierna flexionada. La clave es nunca permitir que el oponente enderece completamente la pierna. Se mantiene la rodilla pegada al pecho y se usa la mano para controlar el pie del oponente, impidiendo que asegure la posición de poder .',
+        category: 'defense'
+    },
+    {
+        id: 'defense-kneebar-roll',
+        name: 'Kneebar Defense / Spin Out',
+        type: 'defense',
+        belt_level: 'purple',
+        level: 'advanced',
+        description: 'Defensa de kneebar girando hacia afuera. Cuando el oponente asegura la kneebar, se gira el cuerpo hacia el lado de la pierna atacada para liberar la rodilla de la línea de presión. Se termina en una posición de guardia o de pie.',
+        category: 'defense'
+    },
+    {
+        id: 'defense-straight-ankle-turnout',
+        name: 'Straight Ankle Lock Defense (Turn Out)',
+        type: 'defense',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Defensa contra straight ankle lock girando el pie hacia afuera. Se gira el pie atacado en la dirección opuesta a la luxación (hacia afuera) para aliviar la presión en el tobillo, mientras se lleva la rodilla hacia el pecho para liberar la pierna.',
+        category: 'defense'
+    },
+    {
+        id: 'defense-calf-slicer',
+        name: 'Calf Slicer Defense',
+        type: 'defense',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Defensa contra calf slicer. La clave es evitar que el oponente asegure la compresión. Se extiende la pierna atrapada y se gira la rodilla hacia afuera para liberar la pantorrilla de la presión del brazo. Mikey Musumeci enseña que entender los límites de la sumisión es clave para defenderla .',
+        category: 'defense'
+    },
+
+        {
+        id: 'defense-gogoplata',
+        name: 'Gogoplata Defense',
+        type: 'defense',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Defensa contra gogoplata. La clave es evitar que la espinilla cruce la garganta. Se mantiene la barbilla pegada al pecho y se usa la mano para empujar el pie del oponente hacia abajo antes de que asegure la posición. Si ya está colocada, se gira la cabeza hacia el lado opuesto para liberar la tráquea .',
+        category: 'defense'
+    },
+    {
+        id: 'defense-twister-prevention',
+        name: 'Twister Prevention (Double Underhooks)',
+        type: 'defense',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Prevención del twister desde lockdown. La clave es trabajar constantemente para obtener double underhooks o whizzer. Si se estira correctamente el lockdown y se mantiene el pie del oponente enganchado, se previene el twister pass. Chris Herzog enfatiza que la prevención es la mejor defensa .',
+        category: 'defense'
+    },
+    {
+        id: 'defense-twister-elbow',
+        name: 'Twister Defense (Elbow Up)',
+        type: 'defense',
+        belt_level: 'brown',
+        level: 'expert',
+        description: 'Defensa contra twister subiendo el codo. Como muestra Saulo Ribeiro, cuando el oponente intenta el twister, se sube el codo y se gira hacia él para liberar la columna de la torsión, recuperando una posición neutral .',
+        category: 'defense'
+    },
+
+        {
+        id: 'defense-armbar-mount',
+        name: 'Armbar from Mount Defense',
+        type: 'defense',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Defensa contra armbar desde montada. Cuando el oponente intenta subir a S-mount para el armbar, se mantienen los codos pegados al cuerpo y se sigue la cadera del oponente, impidiendo que aísle el brazo. Si logra extenderlo, se aplica el hitchhiker escape.',
+        category: 'defense'
+    },
+    {
+        id: 'defense-triangle-from-guard',
+        name: 'Triangle from Guard Defense',
+        type: 'defense',
+        belt_level: 'blue',
+        level: 'intermediate',
+        description: 'Defensa contra triángulo desde guardia. Se mantiene la postura erguida, se levanta al oponente y se apila. Si el triángulo ya está cerrado, se usa la mano en el muslo y la torsión para escapar .',
+        category: 'defense'
+    },
+
 ];
 
         // Agrega esta función al principio de tu archivo JavaScript
