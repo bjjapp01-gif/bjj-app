@@ -10318,6 +10318,29 @@ const BJJ_TECHNIQUES_DATABASE = [
         return null;
     }
 }
+
+(function() {
+        console.log('🔥 FORZANDO URL DE RENDER...');
+        
+        // 1. Guardar la URL correcta en localStorage para debug
+        localStorage.setItem('API_BASE_URL', 'https://bjj-app-backend.onrender.com/api');
+        
+        // 2. Sobrescribir cualquier instancia de BJJApi existente
+        window.API_BASE_URL = 'https://bjj-app-backend.onrender.com/api';
+        
+        // 3. Si la clase ya está definida, la modificamos
+        if (window.BJJApi) {
+            console.log('🔄 Modificando clase BJJApi existente');
+            const originalBaseUrl = window.BJJApi.prototype.baseUrl;
+            window.BJJApi.prototype.baseUrl = 'https://bjj-app-backend.onrender.com/api';
+            window.BJJApi.prototype.getApiBaseUrl = function() {
+                return 'https://bjj-app-backend.onrender.com/api';
+            };
+        }
+        
+        console.log('✅ URL forzada a:', 'https://bjj-app-backend.onrender.com/api');
+    })();
+    
     // ==================== API SERVICE ====================
     class BJJApi {
     constructor() {
