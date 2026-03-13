@@ -15415,15 +15415,6 @@ function updateObjectivesDashboard(objectives) {
     
     let html = '';
     
-    // Encabezado con contador
-    html += `
-        <div class="dashboard-header" style="margin-bottom: 15px; padding: 0 10px;">
-            <h4 style="color: #2c3e50; margin: 0;">
-                <i class="fas fa-bullseye"></i> 
-                Tienes ${totalActiveObjectives} objetivo${totalActiveObjectives !== 1 ? 's' : ''} por completar
-            </h4>
-        </div>
-    `;
     
     // Mostrar los 3 objetivos más próximos
     displayObjectives.forEach((objective, index) => {
