@@ -10340,61 +10340,56 @@ const BJJ_TECHNIQUES_DATABASE = [
         
         console.log('✅ URL forzada a:', 'https://bjj-app-backend.onrender.com/api');
     })();
-    
+
     // ==================== API SERVICE ====================
     class BJJApi {
     constructor() {
-        this.token = localStorage.getItem('bjj_token');
+         this.token = localStorage.getItem('bjj_token');
         
-        // DETECTAR ENTORNO AUTOMÁTICAMENTE
-        const currentHostname = window.location.hostname;
-        console.log('🌐 Hostname detectado:', currentHostname);
+        // 🚀 ÚNICA URL - LA DE RENDER
+        this.baseUrl = 'https://bjj-app-backend.onrender.com/api';
         
-        // Determinar si estamos en producción (Render u otro dominio que no sea local)
-        const isProduction = currentHostname !== 'localhost' && 
-                            currentHostname !== '192.168.1.34' && 
-                            !currentHostname.includes('127.0.0.1');
-        
-        // Detectar si es app nativa (Capacitor)
-        const isNativeApp = window.Capacitor || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-        
-        if (isProduction) {
-            // 🚀 MODO PRODUCCIÓN - Usar Render
-            this.baseUrl = 'https://bjj-app-backend.onrender.com/api';
-            console.log('🚀 Modo producción - Usando Render:', this.baseUrl);
-        } else {
-            // 💻 MODO DESARROLLO LOCAL
-            if (isNativeApp) {
-                // 📱 App nativa (Android/iOS) - Usar IP local
-                this.baseUrl = 'http://192.168.1.34:5000/api';
-                console.log('📱 Modo app nativa - Usando IP:', this.baseUrl);
-            } else {
-                // 🌐 Navegador en desarrollo local
-                this.baseUrl = 'http://localhost:5000/api';
-                console.log('💻 Modo desarrollo local - Usando localhost:', this.baseUrl);
-            }
-        }
-        
-        console.log('🎯 URL Base final:', this.baseUrl);
+        console.log('🎯 URL Base fija:', this.baseUrl);
         this.isRefreshing = false;
         this.refreshSubscribers = [];
     }
 
-    // ========== MÉTODO PARA OBTENER URL BASE ==========
     getApiBaseUrl() {
-        // Usar la misma lógica que en el constructor para consistencia
-        const currentHostname = window.location.hostname;
-        const isProduction = currentHostname !== 'localhost' && 
-                            currentHostname !== '192.168.1.34' && 
-                            !currentHostname.includes('127.0.0.1');
-        const isNativeApp = window.Capacitor || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-        
-        if (isProduction) {
-            return 'https://bjj-app-backend.onrender.com/api';
-        } else if (isNativeApp) {
-            return 'http://192.168.1.34:5000/api';
-        } else {
-            return 'http://localhost:5000/api';
+        return 'https://bjj-app-backend.onrender.com/api'; // Siempre Render
+    }
+
+    async request(endpoint, options = {}) {
+        try {
+            const url = `${this.baseUrl}${endpoint}`;
+            console.log(`🔗 Conectando a: ${url}`);
+            
+            const headers = {
+                'Content-Type': 'application/json',
+                ...options.headers
+            };
+            
+            if (this.token) {
+                headers['Authorization'] = `Bearer ${this.token}`;
+            }
+            
+            const response = await fetch(url, {
+                ...options,
+                headers
+            });
+            
+            console.log(`📊 Status: ${response.status}`);
+            
+            const data = await response.json();
+            
+            if (!response.ok) {
+                throw new Error(data.error || `Error ${response.status}`);
+            }
+            
+            return data;
+            
+        } catch (error) {
+            console.error('❌ Error:', error);
+            throw error;
         }
     }
 
@@ -10458,69 +10453,7 @@ const BJJ_TECHNIQUES_DATABASE = [
         }
     }
 
-    async request(endpoint, options = {}) {
-        const url = `${this.baseUrl}${endpoint}`;
-        
-        console.log('🔗 Conectando a:', url);
-        
-        const headers = {
-            'Content-Type': 'application/json',
-            ...options.headers,
-        };
-
-        if (this.token) {
-            headers.Authorization = `Bearer ${this.token}`;
-        }
-
-        try {
-            const response = await fetch(url, {
-                ...options,
-                headers,
-                mode: 'cors'
-            });
-
-            // Si el token expiró, intentar refresh automáticamente
-            if (response.status === 401) {
-                const errorData = await response.json().catch(() => ({}));
-                
-                if (errorData.code === 'TOKEN_EXPIRED') {
-                    console.log('🔄 Token expirado, intentando refresh...');
-                    
-                    try {
-                        await this.refreshToken();
-                        // Reintentar la petición original con el nuevo token
-                        headers.Authorization = `Bearer ${this.token}`;
-                        
-                        const retryResponse = await fetch(url, {
-                            ...options,
-                            headers,
-                            mode: 'cors'
-                        });
-                        
-                        if (!retryResponse.ok) {
-                            throw new Error(`HTTP error! status: ${retryResponse.status}`);
-                        }
-                        
-                        return await retryResponse.json();
-                    } catch (refreshError) {
-                        console.error('❌ Error en refresh automático:', refreshError);
-                        this.removeToken();
-                        showLogin();
-                        throw new Error('Sesión expirada. Por favor, inicia sesión nuevamente.');
-                    }
-                }
-            }
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            return await response.json();
-        } catch (error) {
-            console.error('❌ Error de conexión:', error);
-            throw new Error(`No se pudo conectar al servidor: ${error.message}`);
-        }
-    }
+    
 
         // Auth methods
         async login(email, password) {
