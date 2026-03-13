@@ -8411,7 +8411,7 @@ button[onclick*="closeSessionDetail"]:hover {
             <option value="all">Todos los tipos</option>
             <option value="guard">Guardia</option>
             <option value="pass">Pasaje</option>
-            <option value="sweep">Barrida</option>
+            <option value="sweep">Inversion</option>
             <option value="submission">Sumisión</option>
             <option value="escape">Escape</option>
             <option value="defense">Defensa</option>
@@ -8773,7 +8773,7 @@ button[onclick*="closeSessionDetail"]:hover {
                             <option value="">Seleccionar tipo</option>
                             <option value="guard">Guardia</option>
                             <option value="pass">Pasaje</option>
-                            <option value="sweep">Barrida</option>
+                            <option value="sweep">Inversion</option>
                             <option value="submission">Sumisión</option>
                             <option value="escape">Escape</option>
                             <option value="defense">Defensa</option>
@@ -8883,7 +8883,7 @@ button[onclick*="closeSessionDetail"]:hover {
                             <option value="">Seleccionar tipo</option>
                             <option value="guard">Guardia</option>
                             <option value="pass">Pasaje</option>
-                            <option value="sweep">Barrida</option>
+                            <option value="sweep">Inversion</option>
                             <option value="submission">Sumisión</option>
                             <option value="escape">Escape</option>
                             <option value="defense">Defensa</option>
@@ -9367,7 +9367,7 @@ button[onclick*="closeSessionDetail"]:hover {
         <option value="all">Todos los tipos</option>
         <option value="guard">Guardia</option>
         <option value="pass">Pasaje</option>
-        <option value="sweep">Barrida</option>
+        <option value="sweep">Inversion</option>
         <option value="submission">Sumisión</option>
         <option value="escape">Escape</option>
         <option value="defense">Defensa</option>
@@ -10471,7 +10471,7 @@ const BJJ_TECHNIQUES_DATABASE = [
         type: 'sweep',
         belt_level: 'white',
         level: 'beginner',
-        description: 'Barrida tijera. La inversión más clásica desde guardia cerrada. Consiste en controlar manga y solapa del mismo lado, girar sobre la cadera y usar las piernas en movimiento de tijera para derribar al oponente. La clave está en romper la postura y que la espinilla de la pierna de arriba cruce el abdomen del rival. Especialistas: Roger Gracie, Fabio Leopoldo .',
+        description: 'Inversion tijera. La inversión más clásica desde guardia cerrada. Consiste en controlar manga y solapa del mismo lado, girar sobre la cadera y usar las piernas en movimiento de tijera para derribar al oponente. La clave está en romper la postura y que la espinilla de la pierna de arriba cruce el abdomen del rival. Especialistas: Roger Gracie, Fabio Leopoldo .',
         category: 'sweep'
     },
     {
@@ -10480,7 +10480,7 @@ const BJJ_TECHNIQUES_DATABASE = [
         type: 'sweep',
         belt_level: 'white',
         level: 'beginner',
-        description: 'Barrida de cadera o "sit-up sweep". Ideal cuando el oponente mantiene la postura erguida. Se eleva la cadera empujando con los pies mientras se tira del brazo, desequilibrando al rival hacia atrás. Si postea la mano, se puede encadenar con un triángulo. Muy efectiva contra oponentes que se sientan pesados .',
+        description: 'Inversion de cadera o "sit-up sweep". Ideal cuando el oponente mantiene la postura erguida. Se eleva la cadera empujando con los pies mientras se tira del brazo, desequilibrando al rival hacia atrás. Si postea la mano, se puede encadenar con un triángulo. Muy efectiva contra oponentes que se sientan pesados .',
         category: 'sweep'
     },
     {
@@ -10489,7 +10489,7 @@ const BJJ_TECHNIQUES_DATABASE = [
         type: 'sweep',
         belt_level: 'white',
         level: 'beginner',
-        description: 'Barrida péndulo. Se controla el brazo y la pierna del mismo lado del oponente, balanceando las piernas como un péndulo para generar momentum y derribarlo hacia el lado contrario. Requiere buen timing y coordinación. Muy popular en las categorías más ligeras .',
+        description: 'Inversion péndulo. Se controla el brazo y la pierna del mismo lado del oponente, balanceando las piernas como un péndulo para generar momentum y derribarlo hacia el lado contrario. Requiere buen timing y coordinación. Muy popular en las categorías más ligeras .',
         category: 'sweep'
     },
     {
@@ -10498,7 +10498,7 @@ const BJJ_TECHNIQUES_DATABASE = [
         type: 'sweep',
         belt_level: 'white',
         level: 'beginner',
-        description: 'Barrida flor o "kick over sweep". Se controla un brazo del oponente contra el pecho y la rodilla contraria con la mano libre, mientras la pierna del mismo lado se eleva hacia su hombro. Un puente de cadera combinado con la patada de la pierna completa el barrido. Especialistas: Romulo Barral, Lucas Lepri .',
+        description: 'Inversion flor o "kick over sweep". Se controla un brazo del oponente contra el pecho y la rodilla contraria con la mano libre, mientras la pierna del mismo lado se eleva hacia su hombro. Un puente de cadera combinado con la patada de la pierna completa el barrido. Especialistas: Romulo Barral, Lucas Lepri .',
         category: 'sweep'
     },
     {
@@ -10507,7 +10507,7 @@ const BJJ_TECHNIQUES_DATABASE = [
         type: 'sweep',
         belt_level: 'blue',
         level: 'intermediate',
-        description: 'Barrida ascensor o "butterfly sweep from closed guard". Cuando el oponente apoya la cabeza en el pecho, se abren las piernas y se colocan los pies como hooks de mariposa por dentro de los muslos, elevando al rival con un movimiento ascendente. También se le conoce como "reverse grapevine sweep" .',
+        description: 'Inversion ascensor o "butterfly sweep from closed guard". Cuando el oponente apoya la cabeza en el pecho, se abren las piernas y se colocan los pies como hooks de mariposa por dentro de los muslos, elevando al rival con un movimiento ascendente. También se le conoce como "reverse grapevine sweep" .',
         category: 'sweep'
     },
     {
@@ -12343,7 +12343,7 @@ function safeFormatDate(dateValue, defaultValue = 'Fecha no disponible') {
         const types = {
             'guard': 'Guardia',
             'pass': 'Pasaje',
-            'sweep': 'Barrida',
+            'sweep': 'Inversion',
             'submission': 'Sumisión',
             'escape': 'Escape',
             'defense': 'Defensa',
