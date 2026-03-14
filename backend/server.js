@@ -3959,7 +3959,7 @@ app.delete('/api/training-sessions/:id', authenticateToken, async (req, res) => 
 // ==================== RUTAS COMPLETAS PARA OBJETIVOS DEL USUARIO ====================
 
 // Obtener todos los objetivos del usuario actual
-app.get('/user/objectives', authenticateToken, async (req, res) => {
+app.get('/api/user/objectives', authenticateToken, async (req, res) => {
     try {
         console.log('📥 Obteniendo objetivos para usuario:', req.user.id);
         
