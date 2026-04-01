@@ -102,151 +102,151 @@ async function testConnection() {
 }
 
 // ==============================================
-// CREAR TABLAS FALTANTES AUTOMÁTICAMENTE
+// INICIALIZACIÓN DEL SERVIDOR
 // ==============================================
+
+let isDatabaseReady = false;
+
+// Función para inicializar todo después de que la BD esté lista
+async function initializeServer() {
+    try {
+        // 1. Primero crear las tablas
+        await createMissingTables();
+        
+        // 2. Verificar salud de la BD
+        await checkDatabaseHealth();
+        
+        // 3. Marcar BD como lista
+        isDatabaseReady = true;
+        
+        // 4. Iniciar el servidor
+        startServer();
+        
+        // 5. Configurar CRON jobs solo después de que la BD esté lista
+        setupCronJobs();
+        
+    } catch (error) {
+        console.error('❌ Error inicializando servidor:', error);
+        // Intentar de nuevo después de 10 segundos
+        setTimeout(initializeServer, 10000);
+    }
+}
+
+// Configurar CRON jobs
+function setupCronJobs() {
+    if (!isDatabaseReady) {
+        console.log('⏳ BD no lista, esperando para configurar CRON jobs...');
+        setTimeout(setupCronJobs, 5000);
+        return;
+    }
+    
+    console.log('🔄 Configurando CRON jobs...');
+    // Configurar CRON jobs (ejecutar cada hora)
+    setInterval(checkExpiringMemberships, 60 * 60 * 1000);
+    
+    // Ejecutar también al iniciar el servidor (con delay)
+    setTimeout(checkExpiringMemberships, 10000);
+}
+
+// Iniciar servidor
+function startServer() {
+    const PORT = process.env.PORT || 5000;
+    const HOST = '0.0.0.0';
+    
+    app.listen(PORT, HOST, () => {
+        console.log('\n' + '='.repeat(50));
+        console.log('🎯 SERVIDOR BJJ CLUB PLATFORM INICIADO');
+        console.log('='.repeat(50));
+        console.log('🔧 Puerto:', PORT);
+        console.log('🌐 Host:', HOST);
+        console.log('📁 Directorio:', __dirname);
+        console.log('='.repeat(50) + '\n');
+    });
+}
+
+// Iniciar la inicialización
+initializeServer();
 
 async function createMissingTables() {
     const client = await pool.connect();
     try {
         console.log('🔍 Verificando tablas necesarias...');
         
-        // 1. Crear tabla members (la que falta)
-        await client.query(`
-            CREATE TABLE IF NOT EXISTS members (
-                id SERIAL PRIMARY KEY,
-                user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-                club_id INTEGER REFERENCES clubs(id) ON DELETE CASCADE,
-                membership_plan_id INTEGER REFERENCES membership_plans(id),
-                status VARCHAR(20) DEFAULT 'active',
-                start_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                end_date TIMESTAMP,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )
-        `);
-        console.log('✅ Tabla members verificada/creada');
+        // Lista de tablas a crear
+        const tables = [
+            {
+                name: 'members',
+                sql: `
+                    CREATE TABLE IF NOT EXISTS members (
+                        id SERIAL PRIMARY KEY,
+                        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+                        club_id INTEGER REFERENCES clubs(id) ON DELETE CASCADE,
+                        membership_plan_id INTEGER REFERENCES membership_plans(id),
+                        status VARCHAR(20) DEFAULT 'active',
+                        start_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                        end_date TIMESTAMP,
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                    )
+                `
+            },
+            {
+                name: 'student_activity',
+                sql: `
+                    CREATE TABLE IF NOT EXISTS student_activity (
+                        id SERIAL PRIMARY KEY,
+                        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+                        session_count INTEGER DEFAULT 0,
+                        last_session_date TIMESTAMP,
+                        status VARCHAR(20) DEFAULT 'active',
+                        objectives JSONB,
+                        notes TEXT,
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                    )
+                `
+            },
+            {
+                name: 'user_profiles',
+                sql: `
+                    CREATE TABLE IF NOT EXISTS user_profiles (
+                        id SERIAL PRIMARY KEY,
+                        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+                        nickname VARCHAR(100),
+                        academy VARCHAR(255),
+                        profile_picture TEXT,
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                    )
+                `
+            }
+        ];
         
-        // 2. Crear índices para members
+        // Crear cada tabla
+        for (const table of tables) {
+            await client.query(table.sql);
+            console.log(`✅ Tabla ${table.name} verificada/creada`);
+        }
+        
+        // Crear índices
         await client.query(`
             CREATE INDEX IF NOT EXISTS idx_members_user_id ON members(user_id);
             CREATE INDEX IF NOT EXISTS idx_members_club_id ON members(club_id);
+            CREATE INDEX IF NOT EXISTS idx_student_activity_user_id ON student_activity(user_id);
+            CREATE INDEX IF NOT EXISTS idx_user_profiles_user_id ON user_profiles(user_id);
         `);
         
-        // 3. Verificar student_activity
+        // Agregar columnas faltantes
         await client.query(`
-            CREATE TABLE IF NOT EXISTS student_activity (
-                id SERIAL PRIMARY KEY,
-                user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-                session_count INTEGER DEFAULT 0,
-                last_session_date TIMESTAMP,
-                status VARCHAR(20) DEFAULT 'active',
-                objectives JSONB,
-                notes TEXT,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )
+            ALTER TABLE notifications ADD COLUMN IF NOT EXISTS club_id INTEGER REFERENCES clubs(id);
+            ALTER TABLE clubs ADD COLUMN IF NOT EXISTS owner_id INTEGER REFERENCES users(id);
         `);
-        console.log('✅ Tabla student_activity verificada/creada');
-        
-        await client.query(`
-            CREATE INDEX IF NOT EXISTS idx_student_activity_user_id ON student_activity(user_id)
-        `);
-        
-        // 4. Verificar user_profiles
-        await client.query(`
-            CREATE TABLE IF NOT EXISTS user_profiles (
-                id SERIAL PRIMARY KEY,
-                user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-                nickname VARCHAR(100),
-                academy VARCHAR(255),
-                profile_picture TEXT,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )
-        `);
-        console.log('✅ Tabla user_profiles verificada/creada');
-        
-        await client.query(`
-            CREATE INDEX IF NOT EXISTS idx_user_profiles_user_id ON user_profiles(user_id)
-        `);
-        
-        // 5. Verificar academy_settings
-        await client.query(`
-            CREATE TABLE IF NOT EXISTS academy_settings (
-                id SERIAL PRIMARY KEY,
-                club_id INTEGER REFERENCES clubs(id) ON DELETE CASCADE,
-                academy_name VARCHAR(255),
-                address TEXT,
-                phone VARCHAR(50),
-                email VARCHAR(100),
-                website VARCHAR(255),
-                logo_url TEXT,
-                updated_by INTEGER REFERENCES users(id),
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )
-        `);
-        console.log('✅ Tabla academy_settings verificada/creada');
-        
-        // 6. Verificar payment_preferences (si no existe)
-        await client.query(`
-            CREATE TABLE IF NOT EXISTS payment_preferences (
-                id SERIAL PRIMARY KEY,
-                preference_id VARCHAR(100) UNIQUE NOT NULL,
-                user_id INTEGER REFERENCES users(id),
-                club_id INTEGER REFERENCES clubs(id),
-                plan_id INTEGER REFERENCES plans(id),
-                amount DECIMAL(10,2) NOT NULL,
-                status VARCHAR(20) DEFAULT 'pending',
-                payment_id VARCHAR(100),
-                payment_data JSONB,
-                metadata JSONB,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )
-        `);
-        console.log('✅ Tabla payment_preferences verificada/creada');
-        
-        // 7. Verificar club_subscriptions
-        await client.query(`
-            CREATE TABLE IF NOT EXISTS club_subscriptions (
-                id SERIAL PRIMARY KEY,
-                club_id INTEGER REFERENCES clubs(id) UNIQUE,
-                plan_id INTEGER REFERENCES plans(id),
-                status VARCHAR(20) DEFAULT 'active',
-                start_date TIMESTAMP,
-                end_date TIMESTAMP,
-                auto_renew BOOLEAN DEFAULT true,
-                payment_method VARCHAR(50),
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )
-        `);
-        console.log('✅ Tabla club_subscriptions verificada/creada');
-        
-        // 8. Verificar que notifications tenga club_id
-        await client.query(`
-            ALTER TABLE notifications ADD COLUMN IF NOT EXISTS club_id INTEGER REFERENCES clubs(id)
-        `);
-        console.log('✅ Columna club_id agregada a notifications');
-        
-        // 9. Verificar que clubs tenga owner_id
-        await client.query(`
-            ALTER TABLE clubs ADD COLUMN IF NOT EXISTS owner_id INTEGER REFERENCES users(id)
-        `);
-        console.log('✅ Columna owner_id agregada a clubs');
-        
-        // 10. Verificar que gameplan_shares tenga las columnas correctas
-        await client.query(`
-            ALTER TABLE gameplan_shares ADD COLUMN IF NOT EXISTS created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
-            ALTER TABLE gameplan_shares ADD COLUMN IF NOT EXISTS updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        `);
-        console.log('✅ Columnas de tiempo agregadas a gameplan_shares');
         
         console.log('✅ Todas las tablas verificadas/creadas correctamente');
         
     } catch (error) {
         console.error('❌ Error creando tablas:', error);
+        throw error;
     } finally {
         client.release();
     }
@@ -8770,10 +8770,29 @@ app.delete('/api/competitions/expenses/:expenseId', authenticateToken, async (re
 
 // Función para verificar vencimientos y crear notificaciones
 async function checkExpiringMemberships() {
-    console.log('🔍 Verificando membresías por vencer...');
+    // Verificar si la BD está lista
+    if (!isDatabaseReady) {
+        console.log('⏳ BD no lista, omitiendo verificación de membresías');
+        return;
+    }
     
     try {
-        // Obtener todas las membresías activas
+        console.log('🔍 Verificando membresías por vencer...');
+        
+        // Verificar que la tabla members existe
+        const tableCheck = await pool.query(`
+            SELECT EXISTS (
+                SELECT FROM information_schema.tables 
+                WHERE table_name = 'members'
+            )
+        `);
+        
+        if (!tableCheck.rows[0].exists) {
+            console.log('⚠️ Tabla members no existe aún, omitiendo verificación');
+            return;
+        }
+        
+        // Continuar con la verificación normal
         const memberships = await pool.query(`
             SELECT m.*, u.id as user_id, u.name, u.email, u.phone,
                    mp.name as plan_name, mp.price,
