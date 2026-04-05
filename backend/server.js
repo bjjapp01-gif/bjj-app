@@ -9,6 +9,7 @@ const jwt = require('jsonwebtoken');
 const { Pool } = require('pg');
 const os = require('os');
 const fs = require('fs');
+const path = require('path');
 
 const app = express();
 const { generatePDF } = require('./pdf-generator');
@@ -84,6 +85,63 @@ pool.on('error', (err, client) => {
   console.error('❌ Error inesperado en el pool de PostgreSQL:', err);
   process.exit(-1); // Cierra la app si hay error crítico
 });
+
+async function initializeDatabase() {
+    const client = await pool.connect();
+    try {
+        console.log('🔍 Verificando base de datos...');
+        
+        // Verificar si la tabla 'users' existe
+        const checkTable = await client.query(`
+            SELECT EXISTS (
+                SELECT FROM information_schema.tables 
+                WHERE table_name = 'users'
+            )
+        `);
+        
+        const usersTableExists = checkTable.rows[0].exists;
+        
+        if (!usersTableExists) {
+            console.log('📦 Base de datos vacía. Creando tablas...');
+            
+            // Leer el archivo SQL
+            const sqlPath = path.join(__dirname, 'setup-db.sql');
+            
+            if (!fs.existsSync(sqlPath)) {
+                console.error('❌ Archivo setup-db.sql no encontrado en:', sqlPath);
+                return;
+            }
+            
+            const sql = fs.readFileSync(sqlPath, 'utf8');
+            
+            // Ejecutar el script SQL (dividir por sentencias)
+            const statements = sql.split(';').filter(stmt => stmt.trim().length > 0);
+            
+            for (const statement of statements) {
+                try {
+                    await client.query(statement);
+                } catch (err) {
+                    // Ignorar errores de "ya existe"
+                    if (!err.message.includes('already exists')) {
+                        console.error('Error ejecutando:', err.message);
+                    }
+                }
+            }
+            
+            console.log('✅ Base de datos inicializada correctamente');
+        } else {
+            console.log('✅ Base de datos ya inicializada');
+        }
+        
+    } catch (error) {
+        console.error('❌ Error inicializando base de datos:', error);
+    } finally {
+        client.release();
+    }
+}
+
+// Ejecutar inicialización ANTES de iniciar el servidor
+initializeDatabase();
 
 // Función para probar la conexión al iniciar
 async function testConnection() {
