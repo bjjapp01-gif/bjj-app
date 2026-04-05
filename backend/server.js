@@ -9,7 +9,6 @@ const jwt = require('jsonwebtoken');
 const { Pool } = require('pg');
 const os = require('os');
 const fs = require('fs');
-const path = require('path');
 
 const app = express();
 const { generatePDF } = require('./pdf-generator');
