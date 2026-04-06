@@ -245,8 +245,7 @@ app.get('/api/admin/create-missing-tables', async (req, res) => {
                 is_active BOOLEAN DEFAULT true,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )
-        `);
+            )`);
         
         // Crear tabla academy_settings
         await client.query(`
@@ -262,14 +261,208 @@ app.get('/api/admin/create-missing-tables', async (req, res) => {
                 updated_by INTEGER REFERENCES users(id),
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )
-        `);
+            )`);
         
+        await client.query(`
+            CREATE TABLE IF NOT EXISTS club_subscriptions (
+                id SERIAL PRIMARY KEY,
+                club_id INTEGER REFERENCES clubs(id),
+                plan_id INTEGER REFERENCES plans(id),
+                status VARCHAR(20) DEFAULT 'active',
+                start_date TIMESTAMP,
+                end_date TIMESTAMP,
+                auto_renew BOOLEAN DEFAULT true,
+                payment_method VARCHAR(50),
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )`);
+            
+            await client.query(`CREATE TABLE IF NOT EXISTS membership_requests (
+                id SERIAL PRIMARY KEY,
+                user_id INTEGER REFERENCES users(id),
+                club_id INTEGER REFERENCES clubs(id),
+                status VARCHAR(20) DEFAULT 'pending',
+                request_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                response_date TIMESTAMP,
+                responded_by INTEGER REFERENCES users(id),
+                rejection_reason TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )`);
+            
+            await client.query(`CREATE TABLE IF NOT EXISTS scheduled_notifications (
+                id SERIAL PRIMARY KEY,
+                user_id INTEGER REFERENCES users(id),
+                club_id INTEGER REFERENCES clubs(id),
+                type VARCHAR(50) NOT NULL,
+                title VARCHAR(200) NOT NULL,
+                message TEXT NOT NULL,
+                scheduled_for TIMESTAMP NOT NULL,
+                sent_at TIMESTAMP,
+                status VARCHAR(20) DEFAULT 'pending',
+                related_id INTEGER,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )`);
+            
+            await client.query(`CREATE TABLE IF NOT EXISTS promotions (
+                id SERIAL PRIMARY KEY,
+                user_id INTEGER REFERENCES users(id),
+                club_id INTEGER REFERENCES clubs(id),
+                old_belt VARCHAR(20) NOT NULL,
+                new_belt VARCHAR(20) NOT NULL,
+                promotion_date DATE NOT NULL,
+                granted_by INTEGER REFERENCES users(id),
+                time_in_old_belt INTERVAL,
+                sessions_in_old_belt INTEGER,
+                observations TEXT,
+                certificate_url TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )`);
+            
+            await client.query(`CREATE TABLE IF NOT EXISTS class_plans (
+                id SERIAL PRIMARY KEY,
+                club_id INTEGER REFERENCES clubs(id),
+                class_date DATE NOT NULL,
+                class_type VARCHAR(50) NOT NULL,
+                theme VARCHAR(100),
+                techniques JSONB DEFAULT '[]',
+                drills TEXT,
+                notes TEXT,
+                created_by INTEGER REFERENCES users(id),
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                UNIQUE(club_id, class_date, class_type)
+            )`);
+            
+            await client.query(`CREATE TABLE IF NOT EXISTS competitions (
+                id SERIAL PRIMARY KEY,
+                club_id INTEGER REFERENCES clubs(id),
+                name VARCHAR(200) NOT NULL,
+                event_date DATE NOT NULL,
+                location VARCHAR(200),
+                organizer VARCHAR(100),
+                website VARCHAR(200),
+                registration_deadline DATE,
+                registration_fee DECIMAL(10,2),
+                category VARCHAR(50),
+                status VARCHAR(20) DEFAULT 'upcoming',
+                notes TEXT,
+                created_by INTEGER REFERENCES users(id),
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )`);
+            
+            await client.query(`CREATE TABLE IF NOT EXISTS competition_participants (
+                id SERIAL PRIMARY KEY,
+                competition_id INTEGER REFERENCES competitions(id),
+                user_id INTEGER REFERENCES users(id),
+                category_weight VARCHAR(50),
+                category_age VARCHAR(50),
+                belt_at_competition VARCHAR(20),
+                gi_mode VARCHAR(10),
+                gender VARCHAR(10),
+                age_category VARCHAR(50),
+                weight_category VARCHAR(50),
+                result VARCHAR(20),
+                fight_count INTEGER DEFAULT 0,
+                win_count INTEGER DEFAULT 0,
+                loss_count INTEGER DEFAULT 0,
+                registered_by INTEGER REFERENCES users(id),
+                registered_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                UNIQUE(competition_id, user_id)
+            )`);
+            
+            await client.query(`CREATE TABLE IF NOT EXISTS competition_expenses (
+                id SERIAL PRIMARY KEY,
+                competition_id INTEGER REFERENCES competitions(id),
+                concept VARCHAR(200) NOT NULL,
+                amount DECIMAL(10,2) NOT NULL,
+                expense_date DATE NOT NULL,
+                paid_by INTEGER REFERENCES users(id),
+                receipt_url TEXT,
+                notes TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )`);
+            
+            await client.query(`CREATE TABLE IF NOT EXISTS competition_photos (
+                id SERIAL PRIMARY KEY,
+                competition_id INTEGER REFERENCES competitions(id),
+                photo_url TEXT NOT NULL,
+                caption VARCHAR(500),
+                uploaded_by INTEGER REFERENCES users(id),
+                uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )`);
+            
+            await client.query(`CREATE TABLE IF NOT EXISTS membership_plans (
+                id SERIAL PRIMARY KEY,
+                club_id INTEGER REFERENCES clubs(id),
+                name VARCHAR(100) NOT NULL,
+                description TEXT,
+                price DECIMAL(10,2) NOT NULL,
+                days_per_week INTEGER,
+                class_limit VARCHAR(100),
+                is_active BOOLEAN DEFAULT true,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )`);
+            
+            await client.query(`CREATE TABLE IF NOT EXISTS academy_settings (
+                id SERIAL PRIMARY KEY,
+                club_id INTEGER REFERENCES clubs(id),
+                academy_name VARCHAR(255),
+                address TEXT,
+                phone VARCHAR(50),
+                email VARCHAR(100),
+                website VARCHAR(255),
+                logo_url TEXT,
+                updated_by INTEGER REFERENCES users(id),
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )`);
+            
+            await client.query(`CREATE TABLE IF NOT EXISTS payment_receipts (
+                id SERIAL PRIMARY KEY,
+                payment_id INTEGER REFERENCES payments(id),
+                user_id INTEGER REFERENCES users(id),
+                club_id INTEGER REFERENCES clubs(id),
+                receipt_number VARCHAR(50) UNIQUE,
+                pdf_data TEXT,
+                sent_email BOOLEAN DEFAULT false,
+                sent_whatsapp BOOLEAN DEFAULT false,
+                email_sent_at TIMESTAMP,
+                whatsapp_sent_at TIMESTAMP,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )`);
+            
+            await client.query(`CREATE TABLE IF NOT EXISTS notification_settings (
+                id SERIAL PRIMARY KEY,
+                club_id INTEGER REFERENCES clubs(id),
+                reminder_days INTEGER[] DEFAULT '{7,3,1}',
+                reminder_enabled BOOLEAN DEFAULT true,
+                reminder_time TIME DEFAULT '09:00:00',
+                email_enabled BOOLEAN DEFAULT true,
+                whatsapp_enabled BOOLEAN DEFAULT false,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                UNIQUE(club_id)
+            )`);
+            
+            await client.query(`CREATE TABLE IF NOT EXISTS scheduled_plan_changes (
+                id SERIAL PRIMARY KEY,
+                club_id INTEGER REFERENCES clubs(id),
+                current_plan_id INTEGER REFERENCES plans(id),
+                new_plan_id INTEGER REFERENCES plans(id),
+                effective_date DATE NOT NULL,
+                status VARCHAR(20) DEFAULT 'pending',
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )`);
+
         // Verificar que se crearon
         const result = await client.query(`
             SELECT tablename FROM pg_tables 
             WHERE schemaname = 'public' 
-            AND tablename IN ('membership_plans', 'academy_settings')
+            AND tablename IN ('membership_plans', 'academy_settings,')
         `);
         
         res.json({
