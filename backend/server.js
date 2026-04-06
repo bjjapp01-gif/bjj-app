@@ -139,8 +139,78 @@ async function initializeDatabase() {
     }
 }
 
-// Ejecutar inicialización ANTES de iniciar el servidor
-initializeDatabase();
+// ==============================================
+// CREAR TABLAS FALTANTES DIRECTAMENTE
+// ==============================================
+
+async function createMissingTablesDirect() {
+    const client = await pool.connect();
+    try {
+        console.log('🔧 Creando tablas faltantes...');
+        
+        // Crear membership_plans
+        await client.query(`
+            CREATE TABLE IF NOT EXISTS membership_plans (
+                id SERIAL PRIMARY KEY,
+                club_id INTEGER REFERENCES clubs(id),
+                name VARCHAR(100) NOT NULL,
+                description TEXT,
+                price DECIMAL(10,2) NOT NULL,
+                days_per_week INTEGER,
+                class_limit VARCHAR(100),
+                is_active BOOLEAN DEFAULT true,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        `);
+        console.log('✅ Tabla membership_plans creada');
+        
+        // Crear academy_settings
+        await client.query(`
+            CREATE TABLE IF NOT EXISTS academy_settings (
+                id SERIAL PRIMARY KEY,
+                club_id INTEGER REFERENCES clubs(id),
+                academy_name VARCHAR(255),
+                address TEXT,
+                phone VARCHAR(50),
+                email VARCHAR(100),
+                website VARCHAR(255),
+                logo_url TEXT,
+                updated_by INTEGER REFERENCES users(id),
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        `);
+        console.log('✅ Tabla academy_settings creada');
+        
+        // Verificar tablas
+        const result = await client.query(`
+            SELECT tablename FROM pg_tables 
+            WHERE schemaname = 'public' 
+            AND tablename IN ('membership_plans', 'academy_settings')
+        `);
+        
+        console.log('📊 Tablas creadas:', result.rows.map(r => r.tablename));
+        
+    } catch (error) {
+        console.error('❌ Error creando tablas:', error);
+    } finally {
+        client.release();
+    }
+}
+
+async function initializeServer() {
+    try {
+        await initializeDatabase();
+        await createMissingTablesDirect();  // Agrega esta línea
+        await checkDatabaseHealth();
+    } catch (error) {
+        console.error('❌ Error inicializando servidor:', error);
+        setTimeout(initializeServer, 10000);
+    }
+}
+
+initializeServer();
 
 // Función para probar la conexión al iniciar
 async function testConnection() {
@@ -215,6 +285,7 @@ app.get('/api/admin/create-missing-tables', async (req, res) => {
         client.release();
     }
 });
+
 
 // ==============================================
 // VERIFICAR BASE DE DATOS
@@ -8723,6 +8794,8 @@ app.delete('/api/competitions/expenses/:expenseId', authenticateToken, async (re
 // ==============================================
 // CRON JOBS PARA NOTIFICACIONES AUTOMÁTICAS
 // ==============================================
+
+let isDatabaseReady = false;
 
 // Función para verificar vencimientos y crear notificaciones
 async function checkExpiringMemberships() {
