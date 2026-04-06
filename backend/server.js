@@ -205,25 +205,6 @@ function setupCronJobs() {
     setTimeout(checkExpiringMemberships, 10000);
 }
 
-// Iniciar servidor
-function startServer() {
-    const PORT = process.env.PORT || 5000;
-    const HOST = '0.0.0.0';
-    
-    app.listen(PORT, HOST, () => {
-        console.log('\n' + '='.repeat(50));
-        console.log('🎯 SERVIDOR BJJ CLUB PLATFORM INICIADO');
-        console.log('='.repeat(50));
-        console.log('🔧 Puerto:', PORT);
-        console.log('🌐 Host:', HOST);
-        console.log('📁 Directorio:', __dirname);
-        console.log('='.repeat(50) + '\n');
-    });
-}
-
-// Iniciar la inicialización
-initializeServer();
-
 async function createMissingTables() {
     const client = await pool.connect();
     try {
