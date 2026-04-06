@@ -8,6 +8,16 @@ CREATE TABLE users (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE students (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    club_id INTEGER REFERENCES clubs(id),
+    belt VARCHAR(20) DEFAULT 'white',
+    status VARCHAR(20) DEFAULT 'active',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Tabla de técnicas (modificada)
 CREATE TABLE techniques (
   id SERIAL PRIMARY KEY,
