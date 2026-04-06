@@ -158,144 +158,62 @@ async function testConnection() {
   }
 }
 
-// ==============================================
-// INICIALIZACIÓN DEL SERVIDOR
-// ==============================================
-
-let isDatabaseReady = false;
-
-// Función para inicializar todo después de que la BD esté lista
-async function initializeServer() {
-    try {
-        // 1. Primero crear las tablas
-        await createMissingTables();
-        
-        // 2. Verificar salud de la BD
-        await checkDatabaseHealth();
-        
-        // 3. Marcar BD como lista
-        isDatabaseReady = true;
-        
-        // 4. Iniciar el servidor
-        startServer();
-        
-        // 5. Configurar CRON jobs solo después de que la BD esté lista
-        setupCronJobs();
-        
-    } catch (error) {
-        console.error('❌ Error inicializando servidor:', error);
-        // Intentar de nuevo después de 10 segundos
-        setTimeout(initializeServer, 10000);
-    }
-}
-
-// Configurar CRON jobs
-function setupCronJobs() {
-    if (!isDatabaseReady) {
-        console.log('⏳ BD no lista, esperando para configurar CRON jobs...');
-        setTimeout(setupCronJobs, 5000);
-        return;
-    }
-    
-    console.log('🔄 Configurando CRON jobs...');
-    // Configurar CRON jobs (ejecutar cada hora)
-    setInterval(checkExpiringMemberships, 60 * 60 * 1000);
-    
-    // Ejecutar también al iniciar el servidor (con delay)
-    setTimeout(checkExpiringMemberships, 10000);
-}
-
-async function createMissingTables() {
+// Endpoint simple para crear tablas faltantes
+app.get('/api/admin/create-missing-tables', async (req, res) => {
     const client = await pool.connect();
     try {
-        console.log('🔍 Verificando tablas necesarias...');
-        
-        // Lista de tablas a crear
-        const tables = [
-            {
-                name: 'members',
-                sql: `
-                    CREATE TABLE IF NOT EXISTS members (
-                        id SERIAL PRIMARY KEY,
-                        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-                        club_id INTEGER REFERENCES clubs(id) ON DELETE CASCADE,
-                        membership_plan_id INTEGER REFERENCES membership_plans(id),
-                        status VARCHAR(20) DEFAULT 'active',
-                        start_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                        end_date TIMESTAMP,
-                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-                    )
-                `
-            },
-            {
-                name: 'student_activity',
-                sql: `
-                    CREATE TABLE IF NOT EXISTS student_activity (
-                        id SERIAL PRIMARY KEY,
-                        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-                        session_count INTEGER DEFAULT 0,
-                        last_session_date TIMESTAMP,
-                        status VARCHAR(20) DEFAULT 'active',
-                        objectives JSONB,
-                        notes TEXT,
-                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-                    )
-                `
-            },
-            {
-                name: 'user_profiles',
-                sql: `
-                    CREATE TABLE IF NOT EXISTS user_profiles (
-                        id SERIAL PRIMARY KEY,
-                        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-                        nickname VARCHAR(100),
-                        academy VARCHAR(255),
-                        profile_picture TEXT,
-                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-                    )
-                `
-            }
-        ];
-        
-        // Crear cada tabla
-        for (const table of tables) {
-            await client.query(table.sql);
-            console.log(`✅ Tabla ${table.name} verificada/creada`);
-        }
-        
-        // Crear índices
+        // Crear tabla membership_plans
         await client.query(`
-            CREATE INDEX IF NOT EXISTS idx_members_user_id ON members(user_id);
-            CREATE INDEX IF NOT EXISTS idx_members_club_id ON members(club_id);
-            CREATE INDEX IF NOT EXISTS idx_student_activity_user_id ON student_activity(user_id);
-            CREATE INDEX IF NOT EXISTS idx_user_profiles_user_id ON user_profiles(user_id);
+            CREATE TABLE IF NOT EXISTS membership_plans (
+                id SERIAL PRIMARY KEY,
+                club_id INTEGER REFERENCES clubs(id),
+                name VARCHAR(100) NOT NULL,
+                description TEXT,
+                price DECIMAL(10,2) NOT NULL,
+                days_per_week INTEGER,
+                class_limit VARCHAR(100),
+                is_active BOOLEAN DEFAULT true,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
         `);
         
-        // Agregar columnas faltantes
+        // Crear tabla academy_settings
         await client.query(`
-            ALTER TABLE notifications ADD COLUMN IF NOT EXISTS club_id INTEGER REFERENCES clubs(id);
-            ALTER TABLE clubs ADD COLUMN IF NOT EXISTS owner_id INTEGER REFERENCES users(id);
+            CREATE TABLE IF NOT EXISTS academy_settings (
+                id SERIAL PRIMARY KEY,
+                club_id INTEGER REFERENCES clubs(id),
+                academy_name VARCHAR(255),
+                address TEXT,
+                phone VARCHAR(50),
+                email VARCHAR(100),
+                website VARCHAR(255),
+                logo_url TEXT,
+                updated_by INTEGER REFERENCES users(id),
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
         `);
         
-        console.log('✅ Todas las tablas verificadas/creadas correctamente');
+        // Verificar que se crearon
+        const result = await client.query(`
+            SELECT tablename FROM pg_tables 
+            WHERE schemaname = 'public' 
+            AND tablename IN ('membership_plans', 'academy_settings')
+        `);
+        
+        res.json({
+            success: true,
+            created_tables: result.rows.map(r => r.tablename),
+            message: 'Tablas creadas correctamente'
+        });
         
     } catch (error) {
-        console.error('❌ Error creando tablas:', error);
-        throw error;
+        console.error('Error:', error);
+        res.status(500).json({ error: error.message });
     } finally {
         client.release();
     }
-}
-
-// Ejecutar test de conexión al iniciar
-testConnection().then(() => {
-    // Después de conectar, crear tablas faltantes
-    setTimeout(() => {
-        createMissingTables();
-    }, 2000);
 });
 
 // ==============================================
