@@ -9068,6 +9068,116 @@ app.get('*', (req, res) => {
     }
 });
 
+// ==============================================
+// ENDPOINT TEMPORAL PARA INICIALIZAR BASE DE DATOS
+// ELIMINAR DESPUÉS DE USAR
+// ==============================================
+
+app.get('/api/admin/init-db', async (req, res) => {
+    // Clave secreta por seguridad (cámbiala por una clave solo tuya)
+    const secret = req.query.secret;
+    const ADMIN_SECRET = 'MI_CLAVE_SECRETA_2024'; // Cambia esto por una clave única
+    
+    if (secret !== ADMIN_SECRET) {
+        return res.status(401).json({ 
+            error: 'No autorizado', 
+            message: 'Agrega ?secret=MI_CLAVE_SECRETA_2024 a la URL' 
+        });
+    }
+    
+    const fs = require('fs');
+    const path = require('path');
+    
+    // Buscar el archivo database.sql (puede estar en la raíz o en backend)
+    let sqlPath = path.join(__dirname, '../database.sql');
+    if (!fs.existsSync(sqlPath)) {
+        sqlPath = path.join(__dirname, 'database.sql');
+    }
+    if (!fs.existsSync(sqlPath)) {
+        sqlPath = path.join(__dirname, '../frontend/database.sql');
+    }
+    
+    if (!fs.existsSync(sqlPath)) {
+        return res.status(404).json({ 
+            error: 'No se encontró database.sql',
+            searchedPaths: [
+                path.join(__dirname, '../database.sql'),
+                path.join(__dirname, 'database.sql'),
+                path.join(__dirname, '../frontend/database.sql')
+            ]
+        });
+    }
+    
+    const client = await pool.connect();
+    
+    try {
+        console.log('📦 Inicializando base de datos desde:', sqlPath);
+        
+        const sql = fs.readFileSync(sqlPath, 'utf8');
+        
+        // Dividir el script en sentencias individuales
+        const statements = sql.split(';').filter(stmt => stmt.trim().length > 0);
+        
+        let successCount = 0;
+        let errorCount = 0;
+        const errors = [];
+        
+        for (const statement of statements) {
+            try {
+                await client.query(statement);
+                successCount++;
+            } catch (err) {
+                // Ignorar errores de "already exists"
+                if (!err.message.includes('already exists') && 
+                    !err.message.includes('duplicate key') &&
+                    !err.message.includes('already defined')) {
+                    errorCount++;
+                    errors.push({ statement: statement.substring(0, 100), error: err.message });
+                    console.error('Error ejecutando:', err.message);
+                } else {
+                    successCount++;
+                }
+            }
+        }
+        
+        console.log(`✅ Base de datos inicializada: ${successCount} sentencias OK, ${errorCount} errores ignorados`);
+        
+        // Verificar tablas principales
+        const tables = ['users', 'clubs', 'plans', 'techniques', 'gameplans', 'events'];
+        const tableStatus = {};
+        
+        for (const table of tables) {
+            const result = await client.query(`
+                SELECT EXISTS (
+                    SELECT FROM information_schema.tables 
+                    WHERE table_name = $1
+                )
+            `, [table]);
+            tableStatus[table] = result.rows[0].exists;
+        }
+        
+        res.json({
+            success: true,
+            message: 'Base de datos inicializada correctamente',
+            stats: {
+                statements_executed: successCount,
+                errors_ignored: errorCount,
+                error_details: errors.slice(0, 10) // Solo primeros 10 errores
+            },
+            tables: tableStatus
+        });
+        
+    } catch (error) {
+        console.error('❌ Error inicializando base de datos:', error);
+        res.status(500).json({ 
+            error: error.message,
+            stack: error.stack
+        });
+    } finally {
+        client.release();
+    }
+});
+
 app.listen(PORT, HOST, () => {
     console.log('\n' + '='.repeat(50));
     console.log('🎯 SERVIDOR BJJ CLUB PLATFORM INICIADO');
