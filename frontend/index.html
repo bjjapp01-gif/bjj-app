@@ -23270,7 +23270,6 @@ async function loadCurrentPlanInfo() {
                     <div style="display: flex; flex-wrap: wrap; gap: 10px;">
                         ${plan.features.can_export_reports ? '<span class="config-badge success"><i class="fas fa-file-excel"></i> Exportar reportes</span>' : ''}
                         ${plan.features.can_use_advanced_stats ? '<span class="config-badge success"><i class="fas fa-chart-line"></i> Estadísticas avanzadas</span>' : ''}
-                        ${plan.features.has_payment_system ? '<span class="config-badge success"><i class="fas fa-credit-card"></i> Sistema de pagos</span>' : ''}
                     </div>
                 </div>
             ` : ''}
@@ -23574,7 +23573,6 @@ async function loadPlansForSelection(modal) {
                         <li><i class="fas ${plan.max_instructors >= 999999 ? 'fa-infinity' : 'fa-check'}"></i> ${plan.max_instructors >= 999999 ? 'Instructores ilimitados' : `${plan.max_instructors} instructores`}</li>
                         <li><i class="fas ${plan.can_export_reports ? 'fa-check' : 'fa-times'}"></i> Exportar reportes</li>
                         <li><i class="fas ${plan.can_use_advanced_stats ? 'fa-check' : 'fa-times'}"></i> Estadísticas avanzadas</li>
-                        <li><i class="fas ${plan.has_payment_system ? 'fa-check' : 'fa-times'}"></i> Sistema de pagos</li>
                     </ul>
                     
                     ${!isCurrent ? `
@@ -23693,7 +23691,7 @@ function showFreePlanConfirmModal(planId, planCode) {
                 <p style="margin-bottom: 15px;">¿Deseas cambiar al plan Gratuito?</p>
                 <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 25px;">
                     Al cambiar al plan gratuito perderás acceso a funciones avanzadas como:
-                    estadísticas avanzadas, exportación de reportes y sistema de pagos.
+                    estadísticas avanzadas y la exportación de reportes.
                 </p>
                 <div style="display: flex; gap: 12px; justify-content: center;">
                     <button class="btn btn-secondary" id="cancel-free-plan" style="
@@ -23887,7 +23885,6 @@ async function loadFullPlanInfo() {
                     <div style="display: flex; flex-wrap: wrap; gap: 10px;">
                         ${plan.features.can_export_reports ? '<span class="config-badge success"><i class="fas fa-file-excel"></i> Exportar reportes</span>' : ''}
                         ${plan.features.can_use_advanced_stats ? '<span class="config-badge success"><i class="fas fa-chart-line"></i> Estadísticas avanzadas</span>' : ''}
-                        ${plan.features.has_payment_system ? '<span class="config-badge success"><i class="fas fa-credit-card"></i> Sistema de pagos</span>' : ''}
                     </div>
                 </div>
             ` : ''}
