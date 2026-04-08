@@ -1,0 +1,18 @@
+{
+  "appId": "com.bjjclub.app",
+  "appName": "BJJ Club",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "server": {
+    "url": "https://bjj-app-backend.onrender.com",
+    "cleartext": true,
+    "androidScheme": "https",
+    "allowNavigation": ["*"]
+  },
+  "android": {
+    "allowMixedContent": true,
+    "webContentsDebuggingEnabled": true,
+    "initialFocus": true,
+    "windowSoftInputMode": "adjustResize"
+  }
+}

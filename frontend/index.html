@@ -11,8 +11,6 @@
     <meta name="msapplication-tap-highlight" content="no">
     <title>BJJ Club Platform - Versión Unificada</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- PWA Manifest -->
-    <!-- <link rel="manifest" href="/manifest.json"> -->
 
     <!-- Meta tags para iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -28,6 +26,9 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Elimina TODO el contenido de <style> y pon SOLO esto -->
     <link rel="stylesheet" href="css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    
+
 </head>
 <body>
     <!-- Toast container for notifications -->
@@ -2031,6 +2032,76 @@
 </div>
 
     <script>
+        const iframe = document.getElementById('app-iframe');
+        const loadingDiv = document.getElementById('app-loading');
+        let loadTimeout;
+        
+        // Función para ocultar loading
+        function hideLoading() {
+            if (loadTimeout) clearTimeout(loadTimeout);
+            loadingDiv.style.opacity = '0';
+            setTimeout(() => {
+                loadingDiv.style.display = 'none';
+                iframe.style.display = 'block';
+            }, 500);
+        }
+        
+        // Cuando el iframe carga exitosamente
+        iframe.onload = function() {
+            console.log('✅ App cargada correctamente');
+            hideLoading();
+            
+            // Intentar ajustar altura del iframe periódicamente
+            function adjustHeight() {
+                try {
+                    const iframeDoc = iframe.contentWindow.document;
+                    const height = Math.max(
+                        iframeDoc.body.scrollHeight,
+                        iframeDoc.documentElement.scrollHeight
+                    );
+                    iframe.style.height = height + 'px';
+                } catch(e) {
+                    // Ignorar errores de cross-origin
+                }
+            }
+            
+            // Ajustar altura cada segundo
+            setInterval(adjustHeight, 1000);
+            setTimeout(adjustHeight, 2000);
+        };
+        
+        // Timeout por si tarda mucho
+        loadTimeout = setTimeout(() => {
+            if (loadingDiv.style.display !== 'none') {
+                loadingDiv.innerHTML = `
+                    <div class="error-container">
+                        <div class="error-icon">⚠️</div>
+                        <h3>Error de conexión</h3>
+                        <p>No se pudo cargar la aplicación.</p>
+                        <p style="font-size: 12px; opacity: 0.7;">Verifica tu conexión a internet</p>
+                        <button class="retry-btn" onclick="location.reload()">
+                            Reintentar
+                        </button>
+                    </div>
+                `;
+            }
+        }, 15000);
+        
+        // Detectar errores de red
+        iframe.onerror = function() {
+            loadingDiv.innerHTML = `
+                <div class="error-container">
+                    <div class="error-icon">🔌</div>
+                    <h3>Error de conexión</h3>
+                    <p>No se pudo conectar al servidor.</p>
+                    <p style="font-size: 12px; opacity: 0.7;">https://bjj-app-backend.onrender.com</p>
+                    <button class="retry-btn" onclick="location.reload()">
+                        Reintentar
+                    </button>
+                </div>
+            `;
+        };
+
         // ==================== BASE DE DATOS DE TÉCNICAS BJJ ====================
 const BJJ_TECHNIQUES_DATABASE = [
     // ========================== GUARDIAS ==========================
@@ -23358,7 +23429,6 @@ async function openPlanSelectionModal() {
                 position: sticky;
                 top: 0;
                 z-index: 10;
-                width:500px;
             ">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <h3 style="margin: 0;">
