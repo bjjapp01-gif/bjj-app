@@ -31718,8 +31718,7 @@ function handleDeletionMode(node) {
     
     const nodeName = node.querySelector('h4')?.textContent || 'este nodo';
     
-    // Confirmar eliminación en móvil (más amigable)
-    if (confirm(`¿Eliminar ${nodeName}?`)) {
+
         deleteNode(node.dataset.id);
         
         // Feedback háptico
@@ -31728,9 +31727,6 @@ function handleDeletionMode(node) {
         }
         
         Toast.success(`🗑️ Nodo eliminado`, 1500);
-    } else {
-        Toast.info('Eliminación cancelada', 1000);
-    }
     
     // Salir del modo eliminación automáticamente
     disableDeletionMode();
